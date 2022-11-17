@@ -1,30 +1,39 @@
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import Logo from './logo.svg';
 import Home from './components/Home';
 import Login from './components/Login';
 import CreateEvent from './components/CreateEvent';
 import Event from './components/Event';
 import navOptions from './data/navOptions';
+import Logout from './img/logout.png';
+import { useState } from 'react';
 import './App.css';
 
 function App() {
-  let navbarOpen = false;
+  let [navbarOpen, setNavbarOpen] = useState(false);
   return (
     <Router>
     <div className="main-container">
-        <div className="nav-container" style={navbarOpen ? {} : {left : "-20vw"}>
+      {/* <button onClick={() => setNavbarOpen(!navbarOpen)}>
+        <img src={Logo} alt="button" />
+      </button> */}
+        <div className="nav-container">
           <div className="nav-logo">
             <img src="../assets/logo.png" alt="logo" />
           </div>
           <div className="nav-options">
             {navOptions.map((option : any, index : any) => (
               <Link to={option.path} key={index}>
-                <div className={"nav-option" +
-                  option.auth ? 'nav-option-auth' : 'nav-option-unauth'}>
-                  <img height={10} src={option.icon} alt={option.name} />
-                  <p>{option.name}</p>
+                <div className="nav-option">
+                  <img className='navBar-imageOptions' src={option.icon} alt={option.name} />
+                  <div className='navBar-optionName'>{option.name}</div>
                 </div>
               </Link>
             ))}
+          </div>
+          <div className='logOut-navBar nav-option' style={{height: "auto", padding: "10px 0"}}>
+            <img className='navBar-imageOptions' src={Logout} alt="user" />
+            <div className='navBar-optionName'>Log out</div>
           </div>
         </div>
       <div className="content-container">
