@@ -26,7 +26,7 @@ const navOptions = [
     },
     {
         name: 'Show Events',
-        path: '/event-screen',
+        path: '/event',
         icon: EventArrow,
         exact: true,
         auth: true

@@ -27,12 +27,30 @@ const Login: React.FC = () => {
             <form className='register' style={register ? {paddingBottom: "20px", width: "450px", marginLeft: "0vw"} : {paddingBottom: "20px", width: "450px"}} action="register">
             <span className="login-header">Registrate</span>
                 <div className='login-input-container'>
-                    <label style={{marginBottom: "20px"}} htmlFor="reg-name">Name</label>
-                    <input type="text" name="reg-name" id="reg-name" />
+                    <label style={{marginBottom: "20px"}} htmlFor="regName">Name</label>
+                    <input type="text" name="regName" id="regName" />
                 </div>
+				<div style={{display: "inline-flex", justifyContent: "center", width: "80%"}}>
+					<div style={{marginRight: "2%"}} className='login-input-container'>
+                	    <label style={{marginBottom: "20px"}} htmlFor="regUsername">Username</label>
+                	    <input style={{width: "95%"}} type="text" name="regUsername" id="regUsername" />
+                	</div>
+					<div style={{marginRight: "-2.6%", marginLeft: "2%"}} className='login-input-container'>
+                	    <label style={{marginBottom: "20px"}} htmlFor="regUsername">Birth date</label>
+                	    <input style={{width: "95%"}} type="date" name="regUsername" id="regUsername" />
+                	</div>
+				</div>
                 <div className='login-input-container'>
                     <label htmlFor="password">Password</label>
                     <input type="password" name="password" id="password" />
+                </div>
+				<div className='login-input-container'>
+                    <label htmlFor="repPassword">Repeat password</label>
+                    <input type="password" name="repPassword" id="repPassword" />
+                </div>
+				<div className='login-input-container'>
+                    <label htmlFor="registerEmail">Email</label>
+                    <input type="email" name="registerEmail" id="registerEmail" />
                 </div>
                 <div className='login-input-container login-center'>
                     <button className='login-button' type="submit">Register</button>
@@ -41,10 +59,10 @@ const Login: React.FC = () => {
             <form style={forgot ? {paddingBottom: "20px", marginLeft: "0vw"} : {paddingBottom: "20px"}} className="forgot" action="forgotPass">
             <span className="login-header">Recuperar contraseña</span>
                 <div className='login-input-container login-center'>
-                    <label style={{marginBottom: "20px"}} htmlFor="email">Email</label>
-                    <input type="email" name="email" id="email" />
+                    <label style={{marginBottom: "48px", width: "0vw"}} htmlFor="forgot-email">Email</label>
+                    <input type="email" name="forgot-email" id="forgot-email" />
                 </div>
-                <div className='login-input-container'>
+                <div className='login-input-container login-center'>
                     <button className='login-button' type="submit">Recuperar</button>
                 </div>
             </form>
