@@ -1,11 +1,10 @@
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
-import Logo from './logo.svg';
 import Home from './components/Home';
 import Login from './components/Login';
 import CreateEvent from './components/CreateEvent';
 import Event from './components/Event';
 import navOptions from './assets/data/navOptions';
-import Logout from './img/logout.png';
+import Logout from './assets/img/logout.png';
 import { useState } from 'react';
 import './App.css';
 

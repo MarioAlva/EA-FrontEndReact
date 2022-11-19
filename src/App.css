@@ -63,6 +63,12 @@ z-index: 1;
 	margin-left: 15px;
 }
 
+
+.nav-logo{
+  width: 35px;
+
+}
+
 .nav-option{
 font-family: 'Roboto', sans-serif;
 text-decoration: none;
