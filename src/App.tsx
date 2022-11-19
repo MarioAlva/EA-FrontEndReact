@@ -4,7 +4,7 @@ import Home from './components/Home';
 import Login from './components/Login';
 import CreateEvent from './components/CreateEvent';
 import Event from './components/Event';
-import navOptions from './data/navOptions';
+import navOptions from './assets/data/navOptions';
 import Logout from './img/logout.png';
 import { useState } from 'react';
 import './App.css';
@@ -19,7 +19,7 @@ function App() {
       </button> */}
         <div className="nav-container">
           <div className="nav-logo">
-            <img src="../assets/logo.png" alt="logo" />
+            <img src="./assets/img/logo.png" alt="logo" />
           </div>
           <div className="nav-options">
             {navOptions.map((option : any, index : any) => (
