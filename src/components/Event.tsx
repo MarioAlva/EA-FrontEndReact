@@ -1,8 +1,60 @@
 import React from 'react'
 import '../css/Event.css'
+import Logo from '../img/logo.svg'
 
 const Event: React.FC = () => {
-	let Event : any[] = [];
+	let Event : any[] = [
+		{
+			date: "2020-01-01",
+			title: "New Year",
+			description: "New Year's Day is the first day of the year, or January 1, in the Gregorian calendar."
+		},
+		{
+			date: "2020-01-20",
+			title: "Martin Luther King Jr. Day",
+			description: "Martin Luther King Jr. Day is an American federal holiday marking the birthday of Martin Luther King Jr."
+		},
+		{
+			date: "2020-01-20",
+			title: "Martin Luther King Jr. Day",
+			description: "Martin Luther King Jr. Day is an American federal holiday marking the birthday of Martin Luther King Jr."
+		},
+		{
+			date: "2020-01-20",
+			title: "Martin Luther King Jr. Day",
+			description: "Martin Luther King Jr. Day is an American federal holiday marking the birthday of Martin Luther King Jr."
+		},
+		{
+			date: "2020-01-20",
+			title: "Martin Luther King Jr. Day",
+			description: "Martin Luther King Jr. Day is an American federal holiday marking the birthday of Martin Luther King Jr."
+		},
+		{
+			date: "2020-01-20",
+			title: "Martin Luther King Jr. Day",
+			description: "Martin Luther King Jr. Day is an American federal holiday marking the birthday of Martin Luther King Jr."
+		},
+		{
+			date: "2020-01-20",
+			title: "Martin Luther King Jr. Day",
+			description: "Martin Luther King Jr. Day is an American federal holiday marking the birthday of Martin Luther King Jr."
+		},
+		{
+			date: "2020-01-20",
+			title: "Martin Luther King Jr. Day",
+			description: "Martin Luther King Jr. Day is an American federal holiday marking the birthday of Martin Luther King Jr."
+		},
+		{
+			date: "2020-01-20",
+			title: "Martin Luther King Jr. Day",
+			description: "Martin Luther King Jr. Day is an American federal holiday marking the birthday of Martin Luther King Jr."
+		},
+		{
+			date: "2020-01-20",
+			title: "Martin Luther King Jr. Day",
+			description: "Martin Luther King Jr. Day is an American federal holiday marking the birthday of Martin Luther King Jr."
+		},
+	];
 	function backCarrousel() {
 		let carrousel = document.getElementById("carrousel");
 		if (carrousel) {
@@ -17,30 +69,36 @@ const Event: React.FC = () => {
 		}
 	}
 
+	// let map: google.maps.Map;
+	// const center: google.maps.LatLngLiteral = {lat: 30, lng: -110};
+	
+	// function initMap(): void {
+	//   map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
+	//     center,
+	//     zoom: 8
+	//   });
+	// }
+
 	return (
         <div className="eventscreen-container">
 			<div className="eventscreen-titles">Eventos</div>
-			<div id="carrousel" style={{display: "inline-flex", width: "90%", height: "210px"}}>
-				<div onClick={() => backCarrousel()} className="eventscreen-arrowCarrousel">
-					<svg style={{transform: "scaleX(-1)"}} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-						<polygon points="7.293 4.707 14.586 12 7.293 19.293 8.707 20.707 17.414 12 8.707 3.293 7.293 4.707"/>
-					</svg>
+			<div className='event-eventsContainer'>
+				<div style={{width: "50%", overflowY: "scroll"}}>
+					{Event.map((event) => (
+						<div className="eventscreen-card">
+							<div>
+								<div className="eventscreen-card-image"><img width={100} src={Logo} alt="" /></div>
+							</div>
+							<div>
+								<div className="eventscreen-card-title">{event.title}</div>
+								<div className="eventscreen-card-description">{event.description}</div>
+								<div className="eventscreen-card-date">{event.date}</div>
+							</div>
+						</div>
+					))}
 
 				</div>
-				<div className="eventscreen-carrousel">
-					{Event.map((Event : any, eventIndex : any) => {
-						return (
-							<div id={'event_' + eventIndex} className="eventscreen-eachEvent">
-								<div className="text">{Event.title}</div>
-    		            		<img src="https://ae01.alicdn.com/kf/HTB1QCxBXuP2gK0jSZFoq6yuIVXag/Carteles-de-pel-culas-Breaking-Bad-carteles-de-pel-culas-Vintage-de-EE-UU-Papel-Kraft.jpg_Q90.jpg_.webp" style={{width:"100%"}} alt="img"/>
-							</div>
-						)
-					})}
-				</div>
-				<div onClick={() => nextCarrousel()} className="eventscreen-arrowCarrousel">
-					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-						<polygon points="7.293 4.707 14.586 12 7.293 19.293 8.707 20.707 17.414 12 8.707 3.293 7.293 4.707"/>
-					</svg>
+				<div style={{width: "50%"}}>
 				</div>
 			</div>
 

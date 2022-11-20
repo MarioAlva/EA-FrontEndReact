@@ -5,8 +5,41 @@
 	display: flex;
 	justify-content: start;
 	flex-direction: column;
-	margin-left: 5%;
-	margin-top: 5vh;
+}
+
+.eventscreen-card{
+	display: inline-flex;
+	padding: 5px;
+	border: 1px solid #3a3a3a94;
+	background-color: #242424;
+	cursor: pointer;
+	transition: border .2s;
+}
+
+.eventscreen-card:hover{
+	border: 1px solid #5e5e5e;
+}
+
+.eventscreen-card:active{
+	background-color: #1f1f1f;
+}
+
+.event-eventsContainer{
+	display: inline-flex;
+	width: 100%;
+	height: 85%;
+}
+
+.eventscreen-card-title{
+	font-size: 22px;
+    font-weight: 700;
+}
+
+.eventscreen-card-date{
+	float: right;
+    margin-right: 3%;
+	font-size: 14px;
+	color: #9b9b9b;
 }
 
 .eventscreen-header{
@@ -22,6 +55,7 @@
 	color: #ffffff;
 	font-family:fantasy;
 	font-size: 48px;
+	margin-bottom: 30px;
 }
 
 .eventscreen-carrousel{

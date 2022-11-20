@@ -25,7 +25,7 @@ const navOptions = [
         auth: true
     },
     {
-        name: 'Show Events',
+        name: 'Events',
         path: '/event',
         icon: EventArrow,
         exact: true,
