@@ -1,14 +1,17 @@
-import React, { Component, useState, ChangeEvent, FormEvent, } from 'react'
+import React, { Component, useState, ChangeEvent, FormEvent, useRef} from 'react'
 import '../css/Login.css'
 import * as userService from '../services/UserServices'
 import { User } from "../models/User";
 import { useNavigate } from "react-router-dom"
+import ReactDOM from "react-dom";
+import useForm from "react-hook-form";
+
 
 type InputChange = ChangeEvent<HTMLInputElement>;
-
 const Login: React.FC = () => {
+    const {register, errors, handleSubmit, watch } = useForm<User>({});
     let navigate = useNavigate();
-    const [userState, setState] = useState<User>(
+    const [userState, setState ] = useState<User>(
         {
             name:"",
             username:"",
@@ -17,34 +20,50 @@ const Login: React.FC = () => {
             email: "",
         }
     );
-    let [register, setRegister] = useState(false);
+    let [registration, setRegister] = useState(false);
     let [forgot, setForgot] = useState(false);
 
     const handleVariableChange = (e: InputChange) => {
         setState({ ...userState, [e.target.name]: e.target.value });
     };
 
-    const handleLog = async (e: FormEvent<HTMLFormElement>) => {
+    const handleLog = handleSubmit(async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const res = await userService.LoginUser(userState);
         console.log(res);
-        navigate('/');
-    };
+        if (res.status == 404) //mail no existe
+            alert(res.statusText);
+            
+        if (res.status == 402) //contraseña erronia
+            alert(res.statusText);
+            
+        if (res.status == 200)
+            navigate('/');
+    });
 
-    const handleReg = async (e: FormEvent<HTMLFormElement>) => {
+    const handleReg = handleSubmit(async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const res = await userService.RegisterUser(userState);
         console.log(res);
         navigate('/');
-    };
+    });
 
     return (
         <div className='login-container'>
-            <form action="login" style={register || forgot ? {marginRight: "260vw", position: "absolute"} : {}} className='login-formContainer' onSubmit={handleLog}>
+            <form action="login" style={registration || forgot ? {marginRight: "260vw", position: "absolute"} : {}} className='login-formContainer' onSubmit={handleLog}>
             <span className="login-header">Log in</span>
                 <div className='login-input-container'>
                     <label style={{marginBottom: "20px"}} htmlFor="email">Email</label>
-                    <input type="email" name="email" id="email" onChange={handleVariableChange}/>
+                    <input type="email" name="email" id="email" 
+                    ref={register({
+                        required: "You must specify a password",
+                        minLength: {
+                          value: 8,
+                          message: "Password must have at least 8 characters"
+                        }
+                      })}
+                    
+                    />
                 </div>
                 <div className='login-input-container'>
                     <label style={{marginBottom: "20px"}} htmlFor="password">Password</label>
@@ -52,13 +71,13 @@ const Login: React.FC = () => {
                 </div>
                 <span className="login-forgot">¿Te has olvidado la contraseña? <a onClick={() => setForgot(true)} className="auth-link">Click aqui</a></span>
                 <div className='login-input-container login-center'>
-                    <button className='login-button' type="submit">Login</button>
+                    <button className='login-button' type="submit" >Login</button>
                 </div>
                 <span className="login-forgot login-center">¿Aún no tienes una cuenta? <a onClick={() => setRegister(true)} className="auth-link">Registrate</a></span>
             </form>
-            <div className="back-button" style={register || forgot ? {marginRight: "280vw"} : {}} onClick={() => {setRegister(false); setForgot(false)}}>
+            <div className="back-button" style={registration || forgot ? {marginRight: "280vw"} : {}} onClick={() => {setRegister(false); setForgot(false)}}>
             </div>
-            <form className='register' style={register ? {paddingBottom: "20px", width: "450px", marginLeft: "0vw"} : {paddingBottom: "20px", width: "450px"}} action="register" onSubmit={handleReg}>
+            <form className='register' style={registration ? {paddingBottom: "20px", width: "450px", marginLeft: "0vw"} : {paddingBottom: "20px", width: "450px"}} action="register" onSubmit={handleReg}>
             <span className="login-header">Registrate</span>
                 <div className='login-input-container'>
                     <label style={{marginBottom: "20px"}} htmlFor="regName">Name</label>
