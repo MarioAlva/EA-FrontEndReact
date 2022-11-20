@@ -4,8 +4,8 @@ import Home from './components/Home';
 import Login from './components/Login';
 import CreateEvent from './components/CreateEvent';
 import Event from './components/Event';
-import navOptions from './data/navOptions';
-import Logout from './img/logout.png';
+import navOptions from './assets/data/navOptions';
+import Logout from './assets/img/logout.png';
 import { useState } from 'react';
 import './App.css';
 

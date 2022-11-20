@@ -139,8 +139,8 @@ label{
     cursor: pointer;
     width: 40px;
     height: 40px;
-    -webkit-mask: url(../img/back_auth.svg) no-repeat center;
-    mask: url(../img/back_auth.svg) no-repeat center;
+    -webkit-mask: url(../assets/img/back_auth.svg) no-repeat center;
+    mask: url(../assets/img/back_auth.svg) no-repeat center;
 	border-radius: 12px;
     background-color: #9B9B9B;
     margin-left: 210vw;
