@@ -5,12 +5,9 @@
 	display: flex;
 	justify-content: start;
 	flex-direction: column;
-	margin-left: 5%;
-	margin-top: 5vh;
 }
 
 .home-header{
-	width: 90%;
 	height: 40vh;
 	max-height: 500px;
 	min-height: 200px;

@@ -23,7 +23,7 @@ const Home: React.FC = () => {
 
 			</div>
 			<div className="home-titles">Series</div>
-			<div id="carrousel" style={{display: "inline-flex", width: "90%", height: "210px"}}>
+			<div id="carrousel" style={{display: "inline-flex", height: "210px"}}>
 				<div onClick={() => backCarrousel()} className="home-arrowCarrousel">
 					<svg style={{transform: "scaleX(-1)"}} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
 						<polygon points="7.293 4.707 14.586 12 7.293 19.293 8.707 20.707 17.414 12 8.707 3.293 7.293 4.707"/>

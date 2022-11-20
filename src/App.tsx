@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import Logo from './img/logo.png';
 import Home from './components/Home';
 import Login from './components/Login';
 import CreateEvent from './components/CreateEvent';
@@ -15,15 +16,16 @@ function App() {
     <div className="main-container">
       {/* <button onClick={() => setNavbarOpen(!navbarOpen)}>
         <img src={Logo} alt="button" />
-      </button> */}
+	</button> */}
         <div className="nav-container">
           <div className="nav-logo">
-            <img src="./assets/img/logo.png" alt="logo" />
+            <img style={{marginLeft: "13px", marginTop: "20px", marginBottom: "170px"}} width={40} src={Logo} alt="logo" />
           </div>
           <div className="nav-options">
             {navOptions.map((option : any, index : any) => (
-              <Link to={option.path} key={index}>
+				<Link to={option.path} key={index}>
                 <div className="nav-option">
+				{process.env.TOKEN}
                   <img className='navBar-imageOptions' src={option.icon} alt={option.name} />
                   <div className='navBar-optionName'>{option.name}</div>
                 </div>
