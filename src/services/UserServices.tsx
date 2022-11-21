@@ -25,11 +25,16 @@ export const delUser = async (id: string) => {
 export {}
 
 export const updateUser = async (user:User) => {
-    return await axios.put(`${API}/`);
+    return await axios.put(`${API}/`, user);
 }
 export {}
 
 export const getUser = async (id: string) => {
     return await axios.get(`${API}/profile/${id}`);
+}
+export {}
+
+export const addSerieFav = async (idUser: string, idSerie:String) => {
+    return await axios.put(`${API}/serie/${idUser}/${idSerie}`);
 }
 export {}

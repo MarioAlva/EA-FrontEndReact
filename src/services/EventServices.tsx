@@ -20,7 +20,7 @@ export const delEvent = async (id: string) => {
 export {}
 
 export const updateUser = async (event:Event) => {
-    return await axios.put(`${API}/`, event);
+    return await axios.put(`${API}/${event._id}`, event);
 }
 export {}
 
