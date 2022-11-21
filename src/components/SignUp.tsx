@@ -26,7 +26,9 @@ const SignUp: React.FC = () => {
     });
 
     return (
+        /*
         <div className='login-container'>
+            
             <div className="back-button" onClick={() => navigate('/login')}>
             </div>
             <form className='register' style={registerView ? {paddingBottom: "20px", width: "450px", marginLeft: "0vw"} : {paddingBottom: "20px", width: "450px"}} action="register" onSubmit={handleReg}>
@@ -89,6 +91,8 @@ const SignUp: React.FC = () => {
                 </div>
             </form>
         </div>
+        */
+       <div></div>
     )
 }
 export default SignUp

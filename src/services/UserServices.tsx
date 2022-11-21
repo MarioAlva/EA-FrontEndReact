@@ -20,6 +20,16 @@ export const getAllUser = async () => {
 export {}
 
 export const delUser = async (id: string) => {
-    return await axios.delete(`${API}/delete/${id}`);
+    return await axios.delete(`${API}/${id}`);
+}
+export {}
+
+export const updateUser = async (user:User) => {
+    return await axios.put(`${API}/`);
+}
+export {}
+
+export const getUser = async (id: string) => {
+    return await axios.get(`${API}/profile/${id}`);
 }
 export {}
