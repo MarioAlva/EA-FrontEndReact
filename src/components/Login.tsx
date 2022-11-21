@@ -1,124 +1,59 @@
-import React, { Component, useState, ChangeEvent, FormEvent, useRef} from 'react'
+import React, { Component, useState, ChangeEvent, FormEvent, } from 'react'
 import '../css/Login.css'
 import * as userService from '../services/UserServices'
 import { User } from "../models/User";
 import { useNavigate } from "react-router-dom"
-import ReactDOM from "react-dom";
-import useForm from "react-hook-form";
+import { useForm } from "react-hook-form";
 
 
-type InputChange = ChangeEvent<HTMLInputElement>;
 const Login: React.FC = () => {
-    const {register, errors, handleSubmit, watch } = useForm<User>({});
+
+    const { register, handleSubmit , formState: {errors}, getValues} = useForm<User>({});
     let navigate = useNavigate();
-    const [userState, setState ] = useState<User>(
-        {
-            name:"",
-            username:"",
-            birthdate:new Date(),
-            password: "", 
-            email: "",
-        }
-    );
-    let [registration, setRegister] = useState(false);
+    let [registerView, setRegister] = useState(false);
     let [forgot, setForgot] = useState(false);
 
-    const handleVariableChange = (e: InputChange) => {
-        setState({ ...userState, [e.target.name]: e.target.value });
-    };
-
-    const handleLog = handleSubmit(async (e: FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        const res = await userService.LoginUser(userState);
+    const handleLog = handleSubmit(async (values) => {
+        const res = await userService.LoginUser(values);
         console.log(res);
-        if (res.status == 404) //mail no existe
-            alert(res.statusText);
-            
-        if (res.status == 402) //contraseña erronia
-            alert(res.statusText);
-            
-        if (res.status == 200)
-            navigate('/');
+        navigate('/');
     });
 
-    const handleReg = handleSubmit(async (e: FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        const res = await userService.RegisterUser(userState);
+    const handleReg = handleSubmit(async (values) => {
+        const res = await userService.RegisterUser(values);
         console.log(res);
         navigate('/');
     });
 
     return (
         <div className='login-container'>
-            <form action="login" style={registration || forgot ? {marginRight: "260vw", position: "absolute"} : {}} className='login-formContainer' onSubmit={handleLog}>
+            <form action="login" className='login-formContainer' onSubmit={handleLog}>
             <span className="login-header">Log in</span>
                 <div className='login-input-container'>
-                    <label style={{marginBottom: "20px"}} htmlFor="email">Email</label>
-                    <input type="email" name="email" id="email" 
-                    ref={register({
-                        required: "You must specify a password",
-                        minLength: {
-                          value: 8,
-                          message: "Password must have at least 8 characters"
-                        }
-                      })}
-                    
-                    />
+                    <label style={{marginBottom: "20px"}} htmlFor="registerEmail">Email</label>
+                    <input {...register("email", {required: "Please Enter Your Email!",
+        pattern: {
+            value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i, 
+            message: "Please Enter A Valid Email!"
+        }})} type="email" id="email" />
+        <p className="error-message">{errors.email?.message}</p>
+                    <p className="error-message">{errors.email?.message}</p>
                 </div>
                 <div className='login-input-container'>
                     <label style={{marginBottom: "20px"}} htmlFor="password">Password</label>
-                    <input type="password" name="password" id="password" onChange={handleVariableChange} />
+                    <input type="password" id="password" {...register("password", {
+                        required: "Please Enter Your Password",
+                        minLength: {value: 8, message: "Password must be at least 8 characters long!"}
+                        })}/>
+                    <p className="error-message">{errors.password?.message}</p>
                 </div>
                 <span className="login-forgot">¿Te has olvidado la contraseña? <a onClick={() => setForgot(true)} className="auth-link">Click aqui</a></span>
                 <div className='login-input-container login-center'>
-                    <button className='login-button' type="submit" >Login</button>
+                    <button className='login-button' type="submit">Login</button>
                 </div>
-                <span className="login-forgot login-center">¿Aún no tienes una cuenta? <a onClick={() => setRegister(true)} className="auth-link">Registrate</a></span>
+                <span className="login-forgot login-center">¿Aún no tienes una cuenta? <a onClick={() => navigate('/signup')} className="auth-link">Registrate</a></span>
             </form>
-            <div className="back-button" style={registration || forgot ? {marginRight: "280vw"} : {}} onClick={() => {setRegister(false); setForgot(false)}}>
-            </div>
-            <form className='register' style={registration ? {paddingBottom: "20px", width: "450px", marginLeft: "0vw"} : {paddingBottom: "20px", width: "450px"}} action="register" onSubmit={handleReg}>
-            <span className="login-header">Registrate</span>
-                <div className='login-input-container'>
-                    <label style={{marginBottom: "20px"}} htmlFor="regName">Name</label>
-                    <input type="text" name="name" id="regName" onChange={handleVariableChange}/>
-                </div>
-				<div style={{display: "inline-flex", justifyContent: "center", width: "80%"}}>
-					<div style={{marginRight: "2%"}} className='login-input-container'>
-                	    <label style={{marginBottom: "20px"}} htmlFor="regUsername">Username</label>
-                	    <input style={{width: "95%"}} type="text" name="username" id="regUsername" onChange={handleVariableChange}/>
-                	</div>
-					<div style={{marginRight: "-2.6%", marginLeft: "2%"}} className='login-input-container'>
-                	    <label style={{marginBottom: "20px"}} htmlFor="regUsername">Birth date</label>
-                	    <input style={{width: "95%"}} type="date" name="birthdate" id="regUsername" onChange={handleVariableChange}/>
-                	</div>
-				</div>
-                <div className='login-input-container'>
-                    <label htmlFor="password">Password</label>
-                    <input type="password" name="password" id="password" onChange={handleVariableChange}/>
-                </div>
-				<div className='login-input-container'>
-                    <label htmlFor="repPassword">Repeat password</label>
-                    <input type="password" name="repPassword" id="repPassword" />
-                </div>
-				<div className='login-input-container'>
-                    <label htmlFor="registerEmail">Email</label>
-                    <input type="email" name="email" id="registerEmail" onChange={handleVariableChange}/>
-                </div>
-                <div className='login-input-container login-center'>
-                    <button className='login-button' type="submit">Register</button>
-                </div>
-            </form>
-            <form style={forgot ? {paddingBottom: "20px", marginLeft: "0vw"} : {paddingBottom: "20px"}} className="forgot" action="forgotPass">
-            <span className="login-header">Recuperar contraseña</span>
-                <div className='login-input-container login-center'>
-                    <label style={{marginBottom: "48px", width: "0vw"}} htmlFor="forgot-email">Email</label>
-                    <input type="email" name="forgot-email" id="forgot-email" />
-                </div>
-                <div className='login-input-container login-center'>
-                    <button className='login-button' type="submit">Recuperar</button>
-                </div>
-            </form>
+          
         </div>
     )
 }

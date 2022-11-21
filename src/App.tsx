@@ -1,7 +1,8 @@
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
-import Logo from './img/logo.png';
+import Logo from './assets/img/logo.png';
 import Home from './components/Home';
 import Login from './components/Login';
+import SignUp from './components/SignUp';
 import CreateEvent from './components/CreateEvent';
 import Event from './components/Event';
 import navOptions from './assets/data/navOptions';
@@ -43,6 +44,7 @@ function App() {
             <Route path="/login" element={<Login />}></Route>
             <Route path="/create-event" element={<CreateEvent />}></Route>
             <Route path="/event" element={<Event />}></Route>
+            <Route path="/signup" element={<SignUp />}></Route>
           </Routes>
       </div>
     </div>
