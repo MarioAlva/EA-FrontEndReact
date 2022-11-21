@@ -4,7 +4,7 @@ import Home from './components/Home';
 import Login from './components/Login';
 import SignUp from './components/SignUp';
 import CreateEvent from './components/CreateEvent';
-import Event from './components/Event';
+import Event from './components/Events';
 import navOptions from './assets/data/navOptions';
 import Logout from './assets/img/logout.png';
 import { useState } from 'react';
