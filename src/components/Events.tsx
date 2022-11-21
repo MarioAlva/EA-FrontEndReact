@@ -4,14 +4,18 @@ import Logo from '../assets/img/logo.svg'
 import {Event} from '../models/Event'
 import { ChangeEvent, useEffect, useState } from 'react'
 import * as eventService from '../services/EventServices'
+import { stringify } from 'querystring'
 
 
 interface Props {
     event:Event
 }
+const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+
 
 const Events: React.FC = () => {
 
+	
 	const [eventList, setEvents] = useState<Event[]>([]);
 
 	const loadEvents = async () => {
@@ -114,7 +118,8 @@ const Events: React.FC = () => {
 							<div>
 								<div className="eventscreen-card-title">{event.title}</div>
 								<div className="eventscreen-card-description">{event.description}</div>
-								<div className="eventscreen-card-date">{event.date?.toDateString()}</div>
+
+								<div className="expense-date">{event.date!.toLocaleString("en-US")}</div>
 							</div>
 						</div>
 					))}
