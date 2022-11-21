@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
-import Logo from './img/logo.png';
+import Logo from './assets/img/logo.png';
 import Home from './components/Home';
 import Login from './components/Login';
 import CreateEvent from './components/CreateEvent';

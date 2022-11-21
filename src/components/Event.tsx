@@ -1,6 +1,6 @@
 import React from 'react'
 import '../css/Event.css'
-import Logo from '../img/logo.svg'
+import Logo from '../assets/img/logo.svg'
 
 const Event: React.FC = () => {
 	let Event : any[] = [
