@@ -119,7 +119,7 @@ const Events: React.FC = () => {
 								<div className="eventscreen-card-title">{event.title}</div>
 								<div className="eventscreen-card-description">{event.description}</div>
 
-								<div className="expense-date">{event.date!.toLocaleString("en-US")}</div>
+								<div className="eventscreen-card-date">{event.date?.toLocaleString("en-US")}</div>
 							</div>
 						</div>
 					))}

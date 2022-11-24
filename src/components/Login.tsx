@@ -6,6 +6,10 @@ import { useNavigate } from "react-router-dom"
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
+//import { ToastContainer, toast, Flip } from "react-toastify";
+//import "react-toastify/dist/ReactToastify.min.css";
+import {useSignIn} from "react-auth-kit";
+import jwt from "jsonwebtoken"
 
 type UserForm = {
     name?: string;
@@ -14,6 +18,12 @@ type UserForm = {
     password: string;
     confirmPassword: string;
     birthdate?:Date;
+    //acceptTerms: boolean;
+};
+
+type LoginData = {
+    email: string;
+    password: string;
     //acceptTerms: boolean;
 };
 
@@ -42,14 +52,67 @@ const Login: React.FC = () => {
         //acceptTerms: Yup.bool().oneOf([true], 'Accept Terms is required')
       });
 
+      const validationSchemaLogin = Yup.object().shape({
+        email: Yup.string()
+          .required('Email is required')
+          .email('Email is invalid'),
+        password: Yup.string()
+          .required('Password is required')
+          .min(6, 'Password must be at least 6 characters')
+          .max(40, 'Password must not exceed 40 characters'),
+      });
+
+    const {register: registerlogin,handleSubmit: handleSubmitLogin,reset: logreset,formState: { errors: logerror }} = useForm<LoginData>({resolver: yupResolver(validationSchemaLogin)});
+
+
     const {register,handleSubmit,reset,formState: { errors }} = useForm<UserForm>({resolver: yupResolver(validationSchema)});
     let navigate = useNavigate();
     let [registerView, setRegister] = useState(false);
     let [forgot, setForgot] = useState(false);
-
-    const handleLog = handleSubmit(async (values) => {
+    const signIn = useSignIn();
+    const handleLog = handleSubmitLogin(async (values) => {
+        console.log(`body login + ${values}`);
         const res = await userService.LoginUser(values);
         console.log(res);
+        
+            signIn({
+                token: res.data.token,
+                expiresIn: 3600,
+                tokenType: "Bearer",
+                authState: { email: values.email },
+            });
+            console.log("token " +res.data.token);
+            document.cookie = `token=${res.data.token}; max-age=${60*3}; path=/; samesite=strinct`;
+            console.log(document.cookie)
+        if (res.data.success === false) {
+            
+
+
+
+            /*
+            toast.error(res.data.error, {
+              position: "top-right",
+              autoClose: 3000,
+              hideProgressBar: true,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: false,
+              progress: 0,
+              toastId: "my_toast",
+            });
+            */
+          } else {
+            /*toast.success(res.data.message, {
+              position: "top-right",
+              autoClose: 3000,
+              hideProgressBar: true,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: false,
+              progress: 0,
+              toastId: "my_toast",
+            });*/
+        }
 
         navigate('/');
     });
@@ -67,12 +130,12 @@ const Login: React.FC = () => {
             <span className="login-header">Log in</span>
                 <div className='login-input-container'>
                     <label style={{marginBottom: "20px"}} htmlFor="email">Email</label>
-                    <input type="email" id="email" {...register("email")}/>
+                    <input type="email" id="email" {...registerlogin("email")}/>
                     <p className="error-message">{errors.email?.message}</p>
                 </div>
                 <div className='login-input-container'>
                     <label style={{marginBottom: "20px"}} htmlFor="password">Password</label>
-                    <input type="password" id="password" {...register("password")} />
+                    <input type="password" id="password" {...registerlogin("password")} />
                     <p className="error-message">{errors.password?.message}</p>
                 </div>
                 <span className="login-forgot">¿Te has olvidado la contraseña? <a onClick={() => setForgot(true)} className="auth-link">Click aqui</a></span>

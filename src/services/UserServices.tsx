@@ -4,12 +4,13 @@ import {User} from '../models/User'
 const API = 'http://localhost:5432/api/users/'
 
 export const RegisterUser = async (user:User) => {
-    return await axios.post(`${API}/register`,user)
+    return await axios.post(`${API}register`,user)
 }
 export {}
 
 export const LoginUser = async (user:User) => {
-    return await axios.post(`${API}/login`,user)
+    console.log(user);
+    return await axios.post(`http://localhost:5432/api/auth/login`,user)
 }
 export {}
 
@@ -25,12 +26,12 @@ export const delUser = async (id: string) => {
 export {}
 
 export const updateUser = async (user:User) => {
-    return await axios.put(`${API}/`, user);
+    return await axios.put(`${API}`, user);
 }
 export {}
 
 export const getUser = async (id: string) => {
-    return await axios.get(`${API}/profile/${id}`);
+    return await axios.get(`${API}profile/${id}`);
 }
 export {}
 

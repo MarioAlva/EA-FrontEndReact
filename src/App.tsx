@@ -9,6 +9,7 @@ import navOptions from './assets/data/navOptions';
 import Logout from './assets/img/logout.png';
 import { useState } from 'react';
 import './App.css';
+import { RequireAuth } from 'react-auth-kit';
 
 function App() {
   let [navbarOpen, setNavbarOpen] = useState(false);
