@@ -21,15 +21,19 @@ type UserForm = {
     //acceptTerms: boolean;
 };
 
-type LoginData = {
+type LoginForm = {
     email: string;
     password: string;
-    //acceptTerms: boolean;
 };
 
 
 const Login: React.FC = () => {
-    const validationSchema = Yup.object().shape({
+    const validationLogin = Yup.object().shape({
+        email: Yup.string().email('Invalid email').required('Required'),
+        password: Yup.string().required('Required'),
+    });
+
+    const validationRegister = Yup.object().shape({
         name: Yup.string().required('Fullname is required'),
         username: Yup.string()
           .required('Username is required')
@@ -52,26 +56,13 @@ const Login: React.FC = () => {
         //acceptTerms: Yup.bool().oneOf([true], 'Accept Terms is required')
       });
 
-      const validationSchemaLogin = Yup.object().shape({
-        email: Yup.string()
-          .required('Email is required')
-          .email('Email is invalid'),
-        password: Yup.string()
-          .required('Password is required')
-          .min(6, 'Password must be at least 6 characters')
-          .max(40, 'Password must not exceed 40 characters'),
-      });
-
-    const {register: registerlogin,handleSubmit: handleSubmitLogin,reset: logreset,formState: { errors: logerror }} = useForm<LoginData>({resolver: yupResolver(validationSchemaLogin)});
-
-
-    const {register,handleSubmit,reset,formState: { errors }} = useForm<UserForm>({resolver: yupResolver(validationSchema)});
+    const {register : register ,handleSubmit,formState: { errors }} = useForm<UserForm>({resolver: yupResolver(validationRegister)});
+    const {register : login ,handleSubmit : formValidate ,formState: { errors : err }} = useForm<LoginForm>({resolver: yupResolver(validationLogin)});
     let navigate = useNavigate();
     let [registerView, setRegister] = useState(false);
     let [forgot, setForgot] = useState(false);
-    const signIn = useSignIn();
-    const handleLog = handleSubmitLogin(async (values) => {
-        console.log(`body login + ${values}`);
+
+    const handleLog = formValidate(async (values) => {
         const res = await userService.LoginUser(values);
         console.log(res);
         
@@ -130,13 +121,13 @@ const Login: React.FC = () => {
             <span className="login-header">Log in</span>
                 <div className='login-input-container'>
                     <label style={{marginBottom: "20px"}} htmlFor="email">Email</label>
-                    <input type="email" id="email" {...registerlogin("email")}/>
-                    <p className="error-message">{errors.email?.message}</p>
+                    <input type="email" id="email" {...login("email")}/>
+                    <p className="error-message">{err.email?.message}</p>
                 </div>
                 <div className='login-input-container'>
                     <label style={{marginBottom: "20px"}} htmlFor="password">Password</label>
-                    <input type="password" id="password" {...registerlogin("password")} />
-                    <p className="error-message">{errors.password?.message}</p>
+                    <input type="password" id="password" {...login("password")} />
+                    <p className="error-message">{err.password?.message}</p>
                 </div>
                 <span className="login-forgot">¿Te has olvidado la contraseña? <a onClick={() => setForgot(true)} className="auth-link">Click aqui</a></span>
                 <div className='login-input-container login-center'>
