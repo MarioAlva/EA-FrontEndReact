@@ -1,15 +1,10 @@
-import React, { Component, useState, ChangeEvent, FormEvent, } from 'react'
+import React, { useState } from 'react'
 import '../css/Login.css'
 import * as userService from '../services/UserServices'
-import { User } from "../models/User";
 import { useNavigate } from "react-router-dom"
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
-//import { ToastContainer, toast, Flip } from "react-toastify";
-//import "react-toastify/dist/ReactToastify.min.css";
-import {useSignIn} from "react-auth-kit";
-import jwt from "jsonwebtoken"
 
 type UserForm = {
     name?: string;
@@ -56,7 +51,7 @@ const Login: React.FC = () => {
         //acceptTerms: Yup.bool().oneOf([true], 'Accept Terms is required')
       });
 
-    const {register : register ,handleSubmit,formState: { errors }} = useForm<UserForm>({resolver: yupResolver(validationRegister)});
+    const {register, handleSubmit, formState: { errors }} = useForm<UserForm>({resolver: yupResolver(validationRegister)});
     const {register : login ,handleSubmit : formValidate ,formState: { errors : err }} = useForm<LoginForm>({resolver: yupResolver(validationLogin)});
     let navigate = useNavigate();
     let [registerView, setRegister] = useState(false);
@@ -64,45 +59,8 @@ const Login: React.FC = () => {
 
     const handleLog = formValidate(async (values) => {
         const res = await userService.LoginUser(values);
-        console.log(res);
-        
-            signIn({
-                token: res.data.token,
-                expiresIn: 3600,
-                tokenType: "Bearer",
-                authState: { email: values.email },
-            });
-            console.log("token " +res.data.token);
-            document.cookie = `token=${res.data.token}; max-age=${60*3}; path=/; samesite=strinct`;
-            console.log(document.cookie)
         if (res.data.success === false) {
-            
-
-
-
-            /*
-            toast.error(res.data.error, {
-              position: "top-right",
-              autoClose: 3000,
-              hideProgressBar: true,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: false,
-              progress: 0,
-              toastId: "my_toast",
-            });
-            */
           } else {
-            /*toast.success(res.data.message, {
-              position: "top-right",
-              autoClose: 3000,
-              hideProgressBar: true,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: false,
-              progress: 0,
-              toastId: "my_toast",
-            });*/
         }
 
         navigate('/');
@@ -189,34 +147,3 @@ const Login: React.FC = () => {
     )
 }
 export default Login
-
-    /*return (
-        <div className='login-container'>
-            <form action="login" className='login-formContainer' onSubmit={handleLog}>
-            <span className="login-header">Log in</span>
-                <div className='login-input-container'>
-                    <label style={{marginBottom: "20px"}} htmlFor="registerEmail">Email</label>
-                    <input {...register("email", {required: "Please Enter Your Email!"
-        })} type="email" id="email" />
-        <p className="error-message">{errors.email?.message}</p>
-                    <p className="error-message">{errors.email?.message}</p>
-                </div>
-                <div className='login-input-container'>
-                    <label style={{marginBottom: "20px"}} htmlFor="password">Password</label>
-                    <input type="password" id="password" {...register("password", {
-                        required: "Please Enter Your Password",
-                        minLength: {value: 8, message: "Password must be at least 8 characters long!"}
-                        })}/>
-                    <p className="error-message">{errors.password?.message}</p>
-                </div>
-                <span className="login-forgot">¿Te has olvidado la contraseña? <a onClick={() => setForgot(true)} className="auth-link">Click aqui</a></span>
-                <div className='login-input-container login-center'>
-                    <button className='login-button' type="submit">Login</button>
-                </div>
-                <span className="login-forgot login-center">¿Aún no tienes una cuenta? <a onClick={() => navigate('/signup')} className="auth-link">Registrate</a></span>
-            </form>
-          
-        </div>
-    )
-}
-export default Login*/

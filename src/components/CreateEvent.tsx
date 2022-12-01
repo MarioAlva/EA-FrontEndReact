@@ -1,7 +1,6 @@
 import React from 'react'
 import '../css/CreateEvent.css'
 import * as eventService from '../services/EventServices'
-import { Event } from "../models/Event";
 import { useNavigate } from "react-router-dom"
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -31,7 +30,7 @@ const CreateEvent: React.FC = () => {
           .min(new Date(), "The event must be in the future!"),
       });
 
-    const {register,handleSubmit,reset,formState: { errors }} = useForm<EventForm>({resolver: yupResolver(validationSchema)});
+    const {register,handleSubmit,formState: { errors }} = useForm<EventForm>({resolver: yupResolver(validationSchema)});
 	let navigate = useNavigate();
 
 	const sendEvent = handleSubmit(async (values) => {
