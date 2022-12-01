@@ -64,17 +64,6 @@ const Login: React.FC = () => {
 
     const handleLog = formValidate(async (values) => {
         const res = await userService.LoginUser(values);
-        console.log(res);
-        
-            signIn({
-                token: res.data.token,
-                expiresIn: 3600,
-                tokenType: "Bearer",
-                authState: { email: values.email },
-            });
-            console.log("token " +res.data.token);
-            document.cookie = `token=${res.data.token}; max-age=${60*3}; path=/; samesite=strinct`;
-            console.log(document.cookie)
         if (res.data.success === false) {
             
 

@@ -11,6 +11,13 @@ const navOptions = [
 		auth: true
     },
     {
+        name: 'Search',
+        path: '/search',
+        icon: EventArrow,
+        exact: true,
+        auth: true
+    },
+    {
         name: 'Log in',
         path: '/login',
         icon: Loginlogo,
