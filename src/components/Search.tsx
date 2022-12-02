@@ -14,6 +14,7 @@ const Search: React.FC = () => {
             time: "12:00",
             location: "Location 1",
             description: "Description 1",
+            tags: ["Action"],
             image: "https://images.unsplash.com/photo-1617229632539-8b8b5b2b2f1d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
         },
         {
@@ -22,6 +23,7 @@ const Search: React.FC = () => {
             time: "13:00",
             location: "Location 2",
             description: "Description 2",
+            tags: ["Romance"],
             image: "https://images.unsplash.com/photo-1617229632539-8b8b5b2b2f1d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
         },
         {
@@ -30,6 +32,7 @@ const Search: React.FC = () => {
             time: "14:00",
             location: "Location 3",
             description: "Description 3",
+            tags: ["Romance", "Comedy"],
             image: "https://images.unsplash.com/photo-1617229632539-8b8b5b2b2f1d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
         },
         {
@@ -38,6 +41,7 @@ const Search: React.FC = () => {
             time: "15:00",
             location: "Location 4",
             description: "Description 4",
+            tags: ["Terror", "Drama", "Romance"],
             image: "https://images.unsplash.com/photo-1617229632539-8b8b5b2b2f1d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
         },
         {
@@ -46,6 +50,7 @@ const Search: React.FC = () => {
             time: "16:00",
             location: "Location 5",
             description: "Description 5",
+            tags: ["Action", "Comedy"],
             image: "https://images.unsplash.com/photo-1617229632539-8b8b5b2b2f1d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
         },
         {
@@ -54,18 +59,25 @@ const Search: React.FC = () => {
             time: "17:00",
             location: "Location 6",
             description: "Description 6",
+            tags: ["Drama", "Comedy", "Terror"],
             image: "https://images.unsplash.com/photo-1617229632539-8b8b5b2b2f1d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
         },
     ]
 
-    let consoled = () => {
-        console.log(search)
-    }
+    let filteredInfo = info.filter((event) => {
+        if (filterList.includes("All")) {
+            return event
+        } else if (filterList.length === 0) {
+            return event.name.toLowerCase().includes(search.toLowerCase())
+        } else {
+            return event.name.toLowerCase().includes(search.toLowerCase()) && filterList.every((tag) => event.tags.includes(tag))
+        }
+    })
 
     return (
         <div className='search-container'>
             <div style={{display: "flex", justifyContent: "center"}}>
-                <input onChange={(e) => setSearch(e.target.value)} onClick={consoled} placeholder='Search...' type="text" />
+                <input onChange={(e) => setSearch(e.target.value)} placeholder='Search...' type="text" />
             </div>
             <div className='filter-container'>
                 <div className='filter' onClick={() => setFilter(!filter)}>
@@ -75,13 +87,16 @@ const Search: React.FC = () => {
                 <div className='filter-modal' style={filter ? {display: "block"} : {display: "none"}}>
                     {filterOptions.map((option, index) => {
                         return (
-                            <div key={index} onClick={(e) => {
-								// if (e.target.checked) {
-								// 	setFilterList([...filterList, option.label])
-								// } else {
-								// 	setFilterList(filterList.filter(item => item !== option.label))
-								// }
-								console.log(e)
+                            <div style={filterList.includes(option.label) && (!filterList.includes("All") || option.label === "All") ? {border: "1px solid rgb(0 52 234)"} : {border: "1px solid rgb(163, 163, 163)"}} key={index} onClick={(e) => {
+								if (!filterList.includes(option.label)) {
+                                    if(filterList.includes("All")) {
+                                        setFilterList(["All"])
+                                    } else{
+									    setFilterList([...filterList, option.label])
+                                    }
+								} else {
+									setFilterList(filterList.filter(item => item !== option.label))
+								}
 							}
 							}>
                                 <span>{option.label}</span>
@@ -91,9 +106,9 @@ const Search: React.FC = () => {
                 </div>
             </div>
             <div className='series-container'>
-                {info.map((item, index) => {
+                {filteredInfo.map((item, index) => {
                     return (
-                        <div className='series-one' style={item.name.includes(search) ? {} : {display: "none"}} key={index}>
+                        <div className='series-one' key={index}>
                             <img src={item.image} alt="series" />
                             <div className='series-info'>
                                 <h3>{item.name}</h3>

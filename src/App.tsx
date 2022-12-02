@@ -3,6 +3,7 @@ import Logo from './assets/img/logo.png';
 import Home from './components/Home';
 import Login from './components/Login';
 import Search from './components/Search';
+import Serie from './components/Serie';
 import CreateEvent from './components/CreateEvent';
 import Event from './components/Events';
 import navOptions from './assets/data/navOptions';
@@ -49,6 +50,7 @@ function App() {
             <Route path="/event/create" element={<CreateEvent />}></Route>
             <Route path="/event" element={<Event />}></Route>
             <Route path="/search" element={<Search />}></Route>
+            <Route path="/serie" element={<Serie />}></Route>
           </Routes>
       </div>
     </div>
