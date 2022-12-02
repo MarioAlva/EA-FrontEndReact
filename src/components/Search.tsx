@@ -1,6 +1,6 @@
 import React from 'react'
 import '../css/Search.css'
-import Filter from '../assets/img/filter.svg'
+import Filter from '../assets/img/filter.png'
 import filterOptions from '../assets/data/filterOptions'
 
 const Search: React.FC = () => {
@@ -69,22 +69,22 @@ const Search: React.FC = () => {
             </div>
             <div className='filter-container'>
                 <div className='filter' onClick={() => setFilter(!filter)}>
-                    <img src={Filter} width="20" alt="filter" />
+                    <img src={Filter} height="25" alt="filter" />
                     <p style={{marginLeft: "5px", fontSize: "20px"}}>Filter</p>
                 </div>
                 <div className='filter-modal' style={filter ? {display: "block"} : {display: "none"}}>
                     {filterOptions.map((option, index) => {
                         return (
-                            <div className='filter-option' key={index}>
-                                <input type="checkbox" onChange={(e) => {
-                                    if (e.target.checked) {
-                                        setFilterList([...filterList, option.label])
-                                    } else {
-                                        setFilterList(filterList.filter(item => item !== option.label))
-                                    }
-                                }
-                                } />
-                                <p>{option.label}</p>
+                            <div key={index} onClick={(e) => {
+								// if (e.target.checked) {
+								// 	setFilterList([...filterList, option.label])
+								// } else {
+								// 	setFilterList(filterList.filter(item => item !== option.label))
+								// }
+								console.log(e)
+							}
+							}>
+                                <span>{option.label}</span>
                             </div>
                         )
                     })}

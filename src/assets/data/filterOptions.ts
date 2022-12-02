@@ -4,13 +4,25 @@ const filterOptions = [
         value: 'all'
     },
     {
-        label: 'Active',
-        value: 'active'
+        label: 'Terror',
+        value: 'terror'
     },
     {
-        label: 'Completed',
-        value: 'completed'
-    }
+        label: 'Action',
+        value: 'action'
+    },
+	{
+		label: 'Comedy',
+		value: 'comedy'
+	},
+	{
+		label: 'Drama',
+		value: 'drama'
+	},
+	{
+		label: 'Romance',
+		value: 'romance'
+	},
 ];
 
 export default filterOptions;
