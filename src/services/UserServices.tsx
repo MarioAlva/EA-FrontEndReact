@@ -11,12 +11,14 @@ export {}
 
 export const LoginUser = async (user:User) => {
     console.log(user);
-    await axios.post(`http://localhost:5432/api/auth/login`,user).then(res => {
+    const res = await axios.post(`http://localhost:5432/api/auth/login`,user).then(res => {
         localStorage.setItem('token', res.data.token);
         axios.defaults.headers.common["Authorization"] = `Bearer ${res.data.token}`;
         console.log(localStorage.getItem('token'));
+        return res;
     }).catch(err =>  {
         delete axios.defaults.headers.common["Authorization"];
+        return null;
     });
 
 }

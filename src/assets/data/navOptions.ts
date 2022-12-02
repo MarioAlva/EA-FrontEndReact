@@ -1,6 +1,6 @@
 import homeLogo from '../img/home.png';
-import Loginlogo from '../img/login.png';
-import EventArrow from '../img/EventArrow.png';
+import searchLogo from '../img/search.png';
+import eventsLogo from '../img/events.png';
 
 const navOptions = [
     {
@@ -11,23 +11,16 @@ const navOptions = [
 		auth: true
     },
     {
-        name: 'Log in',
-        path: '/login',
-        icon: Loginlogo,
-        exact: true,
-		auth: true
-    },
-    {
-        name: 'Create Event',
-        path: '/create-event',
-        icon: EventArrow,
+        name: 'Search',
+        path: '/search',
+        icon: searchLogo,
         exact: true,
         auth: true
     },
     {
         name: 'Events',
         path: '/event',
-        icon: EventArrow,
+        icon: eventsLogo,
         exact: true,
         auth: true
     },

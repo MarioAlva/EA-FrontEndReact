@@ -7,8 +7,6 @@ import * as serieService from '../services/SerieServices'
 import { stringify } from 'querystring'
 //import ReactPlayer from "react-player";
 
-
-
   interface Props {
     serie: Serie;
     loadSeries: () => void;
@@ -42,13 +40,6 @@ import { stringify } from 'querystring'
         </div>
       </div>
     </div>
-     
-        
-    
-    
-        
-
     )
-
 }
 export default SerieList;
