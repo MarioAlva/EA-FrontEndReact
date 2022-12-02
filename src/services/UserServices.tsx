@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { response } from 'express'
 import {User} from '../models/User'
 
 const API = 'http://localhost:5432/api/users/'
@@ -10,7 +11,14 @@ export {}
 
 export const LoginUser = async (user:User) => {
     console.log(user);
-    return await axios.post(`http://localhost:5432/api/auth/login`,user)
+    await axios.post(`http://localhost:5432/api/auth/login`,user).then(res => {
+        localStorage.setItem('token', res.data.token);
+        axios.defaults.headers.common["Authorization"] = `Bearer ${res.data.token}`;
+        console.log(localStorage.getItem('token'));
+    }).catch(err =>  {
+        delete axios.defaults.headers.common["Authorization"];
+    });
+
 }
 export {}
 
@@ -39,3 +47,4 @@ export const addSerieFav = async (idUser: string, idSerie:String) => {
     return await axios.put(`${API}/serie/${idUser}/${idSerie}`);
 }
 export {}
+

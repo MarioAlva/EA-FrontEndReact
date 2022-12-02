@@ -66,7 +66,8 @@ const Login: React.FC = () => {
         const res = await userService.LoginUser(values);
         console.log(res);
         
-            signIn({
+        
+            /*signIn({
                 token: res.data.token,
                 expiresIn: 3600,
                 tokenType: "Bearer",
@@ -74,8 +75,8 @@ const Login: React.FC = () => {
             });
             console.log("token " +res.data.token);
             document.cookie = `token=${res.data.token}; max-age=${60*3}; path=/; samesite=strinct`;
-            console.log(document.cookie)
-        if (res.data.success === false) {
+            console.log(document.cookie)*/
+        //if (res.data.success === false) {
             
 
 
@@ -92,7 +93,7 @@ const Login: React.FC = () => {
               toastId: "my_toast",
             });
             */
-          } else {
+          //} else {
             /*toast.success(res.data.message, {
               position: "top-right",
               autoClose: 3000,
@@ -103,7 +104,7 @@ const Login: React.FC = () => {
               progress: 0,
               toastId: "my_toast",
             });*/
-        }
+        //}
 
         navigate('/');
     });

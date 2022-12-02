@@ -4,11 +4,11 @@ import {Event} from '../models/Event'
 const API = 'http://localhost:5432/api/events/'
 
 export const RegisterEvent = async (event:Event) => {
-    console.log(document.cookie.replace('token=', ''));
+    console.log("token local stirage "+localStorage.getItem('token'));
     return await axios.post(`${API}`,event, {
-        
+
         headers: {
-            "x-auth-token": document.cookie.replace('token=', '')
+            "x-auth-token": localStorage.getItem('token')
             
             }
       })

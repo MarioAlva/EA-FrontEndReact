@@ -1,8 +1,7 @@
-import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Link, redirect } from 'react-router-dom';
 import Logo from './assets/img/logo.png';
 import Home from './components/Home';
 import Login from './components/Login';
-import SignUp from './components/SignUp';
 import CreateEvent from './components/CreateEvent';
 import Event from './components/Events';
 import navOptions from './assets/data/navOptions';
@@ -10,8 +9,14 @@ import Logout from './assets/img/logout.png';
 import { useState } from 'react';
 import './App.css';
 import { RequireAuth } from 'react-auth-kit';
+import React, { Component, ChangeEvent, FormEvent, } from 'react'
 
 function App() {
+  function logout(){
+    console.log("loguot");
+      localStorage.removeItem("token");
+      window.location.assign('/login');
+  }
   let [navbarOpen, setNavbarOpen] = useState(false);
   return (
     <Router>
@@ -34,7 +39,7 @@ function App() {
               </Link>
             ))}
           </div>
-          <div className='logOut-navBar nav-option' style={{height: "auto", padding: "10px 0"}}>
+          <div onClick={logout} className='logOut-navBar nav-option' style={{height: "auto", padding: "10px 0"}}>
             <img className='navBar-imageOptions' src={Logout} alt="user" />
             <div className='navBar-optionName'>Log out</div>
           </div>
@@ -45,7 +50,6 @@ function App() {
             <Route path="/login" element={<Login />}></Route>
             <Route path="/create-event" element={<CreateEvent />}></Route>
             <Route path="/event" element={<Event />}></Route>
-            <Route path="/signup" element={<SignUp />}></Route>
           </Routes>
       </div>
     </div>
