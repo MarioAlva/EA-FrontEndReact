@@ -10,31 +10,32 @@ import { User } from '../models/User'
 
 
 const Profile: React.FC = () => {
-	let series : any[] = [];
+	//let series : any[] = [];
     const navigate = useNavigate();
     const handleClick = () => navigate('/updateuser');
     let username : string = "";
     let us : string = "";
-    let user : any;
+    //let user : any;
     let userProfile : User[] = [];
+    const [user, setUser] = useState<User>();
 
 	const loadUser = async () => {
-		const res = await userService.getProfile();
-        console.log(res);
+		const user = await userService.getProfile();
+        console.log(user);
         console.log("+++++++++");
-        console.log(res.data.username);
-        username = res.data.username;
+        console.log(user.data.username);
+        username = user.data.username;
         console.log("------------");
         console.log(username);
-        user = res.data;
-        userProfile.push(res.data);
+        const getUser = user.data as User;
+        setUser(getUser);
 
         console.log(userProfile);
         console.log("bbbbb");
         console.log(userProfile[0].username);
         const us = userProfile[0].username;
         console.log(us);
-
+        
 	  }
 	useEffect(() => {
 		loadUser()
@@ -45,8 +46,8 @@ const Profile: React.FC = () => {
             <div className="profile-header">
                 <div className="profile-image"></div>
 			</div>                        
-            <div className="profile-titles">{us}</div>
-     
+            <div className="profile-titles">{user?.username}</div>
+            <button className="profile-config-button" onClick={handleClick}>Configuration</button>
 
             {/* <div className="profile-titles">AAA</div> */}
 
