@@ -2,10 +2,10 @@ import { BrowserRouter as Router, Route, Routes, Link, redirect } from 'react-ro
 import Logo from './assets/img/logo.png';
 import Home from './components/Home';
 import Login from './components/Login';
-import Search from './components/Search';
-import Serie from './components/Serie';
 import CreateEvent from './components/CreateEvent';
 import Event from './components/Events';
+import Profile from './components/Profile';
+import UpdateUser from './components/UpdateUser';
 import navOptions from './assets/data/navOptions';
 import Logout from './assets/img/logout.png';
 import login from './assets/img/login.png'; 
@@ -61,8 +61,8 @@ function App() {
             <Route path="/login" element={<Login />}></Route>
             <Route path="/event/create" element={<CreateEvent />}></Route>
             <Route path="/event" element={<Event />}></Route>
-            <Route path="/search" element={<Search />}></Route>
-            <Route path="/serie" element={<Serie />}></Route>
+            <Route path='/profile' element = {<Profile />}></Route>
+            <Route path='/updateUser' element = {<UpdateUser />}></Route>
           </Routes>
       </div>
     </div>

@@ -25,60 +25,6 @@ const Events: React.FC = () => {
 		loadEvents()
 	  }, [])
 	
-
-
-	let Eventos : Event[] = [
-		{
-			date: new Date("2020-01-01"),
-			title: "New Year",
-			description: "New Year's Day is the first day of the year, or January 1, in the Gregorian calendar."
-		},
-		{
-			date: new Date("2020-01-20"),
-			title: "Martin Luther King Jr. Day",
-			description: "Martin Luther King Jr. Day is an American federal holiday marking the birthday of Martin Luther King Jr."
-		},
-		{
-			date: new Date("2020-01-20"),
-			title: "Martin Luther King Jr. Day",
-			description: "Martin Luther King Jr. Day is an American federal holiday marking the birthday of Martin Luther King Jr."
-		},
-		{
-			date: new Date("2020-01-20"),
-			title: "Martin Luther King Jr. Day",
-			description: "Martin Luther King Jr. Day is an American federal holiday marking the birthday of Martin Luther King Jr."
-		},
-		{
-			date: new Date("2020-01-20"),
-			title: "Martin Luther King Jr. Day",
-			description: "Martin Luther King Jr. Day is an American federal holiday marking the birthday of Martin Luther King Jr."
-		},
-		{
-			date: new Date("2020-01-20"),
-			title: "Martin Luther King Jr. Day",
-			description: "Martin Luther King Jr. Day is an American federal holiday marking the birthday of Martin Luther King Jr."
-		},
-		{
-			date: new Date("2020-01-20"),
-			title: "Martin Luther King Jr. Day",
-			description: "Martin Luther King Jr. Day is an American federal holiday marking the birthday of Martin Luther King Jr."
-		},
-		{
-			date: new Date("2020-01-20"),
-			title: "Martin Luther King Jr. Day",
-			description: "Martin Luther King Jr. Day is an American federal holiday marking the birthday of Martin Luther King Jr."
-		},
-		{
-			date: new Date("2020-01-20"),
-			title: "Martin Luther King Jr. Day",
-			description: "Martin Luther King Jr. Day is an American federal holiday marking the birthday of Martin Luther King Jr."
-		},
-		{
-			date: new Date("2020-01-20"),
-			title: "Martin Luther King Jr. Day",
-			description: "Martin Luther King Jr. Day is an American federal holiday marking the birthday of Martin Luther King Jr."
-		},
-	];
 	function backCarrousel() {
 		let carrousel = document.getElementById("carrousel");
 		if (carrousel) {
