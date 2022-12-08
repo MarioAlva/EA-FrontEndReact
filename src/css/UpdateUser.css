@@ -1,4 +1,4 @@
-.update-container{
+.update-user-container{
     padding-bottom: 20px;
     position: absolute;
     width: 550px;
@@ -11,17 +11,11 @@
 	flex-direction: column;
 	align-items: center;
     transition: margin-right 1s, width 0s;
+	top: 5%;
+    left: 25%;
 }
 
-.create-event-container{
-    width: 100%;
-    height: 100%;
-	display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: 1s;
-}
-.create-event{
+.update-user{
     position: absolute;
     width: 550px;
 	max-width: 90vw;
@@ -52,13 +46,13 @@ label{
 :focus{
 	outline: 1px solid #9B9B9B;
 }
-.create-event-header{
+.update-user-header{
 	font-family: 'Roboto', sans-serif;
 	font-size: 30px;
 	color: #D4D4D4;
 	margin-bottom: 30px;
 }
-.create-event-button{
+.update-user-button{
 	background-color: #151515;
 	color: #9F9F9F;
 	border-radius: 7px;
@@ -69,14 +63,27 @@ label{
 	padding: 8px 0;
 	cursor: pointer;
 }
-.create-event-button:hover{
+.update-user-button:hover{
 	background-color: #1E1E1E;
 }
 
-.create-event-button:active{
+.update-user-button:active{
 	background-color: #0D0D0D;
 }
 
-.create-event-button:focus{
+.update-user-button:focus{
 	outline: 1px solid #9B9B9B;
+}
+.back-button{
+    position: absolute;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    -webkit-mask: url(../assets/img/back_auth.svg) no-repeat center;
+    mask: url(../assets/img/back_auth.svg) no-repeat center;
+	border-radius: 12px;
+    background-color: #9B9B9B;
+    margin-left: 216vw;
+    margin-top: 13vw;
+    transition: 1s, background-color 0s;
 }
