@@ -29,6 +29,15 @@
     margin-top: 155px;
     margin-bottom: 20px;
 }
+.profile1-image{
+    height: 100%;
+    width: 16%;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0);
+    margin: 0 auto;
+    margin-top: 155px;
+    margin-bottom: 20px;
+}
 .profile-titles{
 	color: #ffffff;
 	font-family:fantasy;
@@ -46,5 +55,17 @@
 	position: absolute;
     top: 29%;
     right: 0%;
+	cursor: pointer;
+}
+.image-button{
+	background-color: #151515;
+	color: #9F9F9F;
+	border-radius: 7px;
+	width: 120px;
+	max-width: 50vw;
+	border: none;
+	position: absolute;
+    top: 29%;
+    right: 59%;
 	cursor: pointer;
 }

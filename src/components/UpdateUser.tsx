@@ -21,6 +21,7 @@ const UpdateUser: React.FC = () => {
     const handleClick = () => navigate('/profile');
 	const loadUser = async () => {
 		const user = await userService.getProfile();
+        
         const getUser = user.data as User;
         setUser(getUser);
 	  }
@@ -38,7 +39,7 @@ const UpdateUser: React.FC = () => {
     		<form action="UpdateUser" className="update-user" style={clickCreateEvent ? {marginLeft: "0vw", paddingBottom: "20px"} : {paddingBottom: "20px", width: "450px"}}  >
             <span className="update-user-header">Profile</span>
                 <p>
-                    <strong>Name: </strong>{user?.name} 
+                    <strong>Name: </strong> {user!.name} 
                 </p>
                 <p>
                     <strong>Username: </strong>{user?.username}
