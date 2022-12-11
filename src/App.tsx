@@ -6,6 +6,7 @@ import CreateEvent from './components/CreateEvent';
 import Event from './components/Events';
 import Profile from './components/Profile';
 import UpdateUser from './components/UpdateUser';
+import UpdateUserValues from './components/UpdateUserValues';
 import navOptions from './assets/data/navOptions';
 import Logout from './assets/img/logout.png';
 import login from './assets/img/login.png'; 
@@ -63,6 +64,7 @@ function App() {
             <Route path="/event" element={<Event />}></Route>
             <Route path='/profile' element = {<Profile />}></Route>
             <Route path='/updateUser' element = {<UpdateUser />}></Route>
+            <Route path='/updateUserValues' element = {<UpdateUserValues />}></Route>
           </Routes>
       </div>
     </div>

@@ -103,7 +103,14 @@ export const delUser = async (id: string) => {
 export {}
 
 export const updateUser = async (user:User) => {
-    return await axios.put(`${API}`, user);
+    const token = localStorage.getItem('token')!;
+    let decoded = jwt_decode(token) as MyToken;
+    const iduserupdate = decoded.id;
+    console.log("++++++++++++");
+    console.log(iduserupdate);
+
+    return await axios.put(`${API}/${iduserupdate}`, user);
+
 }
 export {}
 

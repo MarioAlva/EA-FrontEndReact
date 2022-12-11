@@ -7,18 +7,15 @@ import { User } from '../models/User'
 import Moment from 'react-moment'
 import '../css/UpdateUser.css'
 
-type UpdateForm = {
-    username: String;
-    name: String;
-    email: String;
-};
+
 
 const UpdateUser: React.FC = () => {
     // let series : any[] = [];
-    let clickCreateEvent = true
+    let clickUpdate = true
     const [user, setUser] = useState<User>();
     const navigate = useNavigate();
     const handleClick = () => navigate('/profile');
+    const handleClick2 = () => navigate('/updateUserValues');
 	const loadUser = async () => {
 		const user = await userService.getProfile();
         
@@ -29,17 +26,13 @@ const UpdateUser: React.FC = () => {
 		loadUser()
 	  }, [])
 
-    const sendCreateEvent = () => {
-        clickCreateEvent = !clickCreateEvent
-        console.log(clickCreateEvent)
-    }
 
     return (
         <div className="update-user-container">
-    		<form action="UpdateUser" className="update-user" style={clickCreateEvent ? {marginLeft: "0vw", paddingBottom: "20px"} : {paddingBottom: "20px", width: "450px"}}  >
+    		<form action="UpdateUser" className="update-user" style={clickUpdate ? {marginLeft: "0vw", paddingBottom: "20px"} : {paddingBottom: "20px", width: "450px"}}  >
             <span className="update-user-header">Profile</span>
                 <p>
-                    <strong>Name: </strong> {user!.name} 
+                    <strong>Name: </strong> {user?.name} 
                 </p>
                 <p>
                     <strong>Username: </strong>{user?.username}
@@ -55,7 +48,7 @@ const UpdateUser: React.FC = () => {
 
                     {/* <strong>Birthdate: </strong>{user?.birthdate} */}
                 </p>
-                <button className="update-user-button" onClick={() => sendCreateEvent()}><b>Update Profile</b></button>
+                <button className="update-user-button" onClick={handleClick2}><b>Update Profile</b></button>
             <div style={{width: "62%", display: "inline-flex", justifyContent: "center", marginBottom: "20px"}}>
                 <div style={{marginRight: "4%", display: "flex", flexDirection: "column", width: "62%"}}>
                 </div>
