@@ -1,7 +1,7 @@
 import React, { useEffect, useState }  from 'react'
 import '../css/Home.css'
 import * as serieService from "../services/SerieServices";
-import {Serie} from "../models/Serie"
+import Serie from "../models/Serie"
 import SerieList from "./SerieList"
 
 const Home: React.FC = () => {

@@ -1,51 +1,34 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import '../css/Serie.css'
+import * as serieService from '../services/SerieServices'
+import { useParams } from 'react-router-dom'
+import Ser from '../models/Serie'
 
 const Serie: React.FC = () => {
-    let chapters = [
-        {
-            name: "Chapter 1",
-            date: "2021-05-01",
-            time: "12:00",
-            location: "Location 1",
-            description: "Description 1",
-        },
-        {
-            name: "Chapter 2",
-            date: "2021-05-02",
-            time: "13:00",
-            location: "Location 2",
-            description: "Description 2",
-        },
-        {
-            name: "Chapter 3",
-            date: "2021-05-03",
-            time: "14:00",
-            location: "Location 3",
-            description: "Description 3",
-        },
-        {
-            name: "Chapter 4",
-            date: "2021-05-04",
-            time: "15:00",
-            location: "Location 4",
-            description: "Description 4",
-        },
-    ]
+	const { id } = useParams<{ id: string }>();
+	const [serie, setSerie] = useState<Ser>();
+	const load = async () => {
+		const serie = await serieService.getSerie(id as string);
+		setSerie(serie.data);
+  	};
+
+	useEffect(() => {
+		load();
+	});
     return (
         <div className='serie-container'>
             <div id='trailer_serie'>
                 <h1 className='serie-title'>
-                    Titulo
+                    {serie?.title}
                 </h1>
             </div>
             <div id='serieInfo_container'>
                 <div id='sinopsis_container'>
                     <h2>Sinopsis:</h2>
-                    <p>fnkjfnsdkjfnsdkfjnsdkjfnsdkfjnsdkjnsdkjnsdfksdnfkjsdnfkdjn</p>
+                    <p>{serie?.overview}</p>
                 </div>
                 <div id='chapter_container'>
-                    {chapters.map((chapter, index) => {
+                    {serie?.episodes.map((chapter, index) => {
                         return (
                             <div className='chapter'>
                                 <div className='chapter-title'>

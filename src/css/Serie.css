@@ -53,10 +53,12 @@
     margin: 8px 0;
     border-radius: 50rem;
     background-color: #171717;
+	margin-left: 5%;
 }
 
 .chapter:hover{
     background-color: #191919;
+	cursor: pointer;
 }
 
 .chapter:active{

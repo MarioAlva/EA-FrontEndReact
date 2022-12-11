@@ -1,7 +1,7 @@
 import { Episode } from "./Episode";
 import { Comment } from "./Comment";
 
-export interface Serie {
+interface Serie {
     _id?: string;
     title: String;
     overview: String;
@@ -17,4 +17,4 @@ export interface Serie {
     episodes: Episode[];
     comments: Comment[];
 }
-export {};
+export default Serie;
