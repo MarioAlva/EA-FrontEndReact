@@ -7,7 +7,7 @@ export interface User {
 	password: String;
 	confirmPassword?:String;
 	birthdate?: Date;
-	email: String;
+	email?: String;
 	series?: Serie[];
 }
 export {};

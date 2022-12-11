@@ -8,6 +8,7 @@ import Profile from './components/Profile';
 import UpdateUser from './components/UpdateUser';
 import Serie from './components/Serie';
 import Search from './components/Search';
+import UpdateUserValues from './components/UpdateUserValues';
 import navOptions from './assets/data/navOptions';
 import Logout from './assets/img/logout.png';
 import login from './assets/img/login.png'; 
@@ -65,6 +66,7 @@ function App() {
             <Route path='/updateUser' element = {<UpdateUser />}></Route>
 			<Route path='/search' element = {<Search />}></Route>
 			<Route path='/serie/:id' element = {<Serie />}></Route>
+            <Route path='/updateUserValues' element = {<UpdateUserValues />}></Route>
           </Routes>
       </div>
     </div>

@@ -131,7 +131,7 @@ const Login: React.FC = () => {
                 </div>
                 <div className='login-input-container'>
                     <label style={{marginBottom: "20px"}} htmlFor="password">Password</label>
-                    <input type="password" id="password" {...login("password")} />
+                    <input type="password" id="password" {...login("password")}/>
                     <p className="error-message">{err.password?.message}</p>
                 </div>
                 <span className="login-forgot">¿Te has olvidado la contraseña? <a onClick={() => setForgot(true)} className="auth-link">Click aqui</a></span>
