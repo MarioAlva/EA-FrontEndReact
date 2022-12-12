@@ -3,7 +3,7 @@ import { User } from "./User";
 export interface Event {
     _id?: string;
     title?: String;
-    image?: String;
+    image?: string;
     description?: String;
     owner?: User;
     date?: Date;

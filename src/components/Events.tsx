@@ -55,7 +55,7 @@ const Events: React.FC = () => {
 							<div style={{width: "100%"}}>
 								<div className="eventscreen-card-title">{event.title}</div>
 								<div className="eventscreen-card-description">{event.description}</div>
-
+								<img src={event.image} ></img>
 								<div className="eventscreen-card-date">
 									<Moment fromNow ago>{event.date?.toLocaleString("en-US")}</Moment>
 								</div>

@@ -4,7 +4,8 @@ import {Event} from '../models/Event'
 const API = 'http://localhost:5432/api/events/'
 
 export const RegisterEvent = async (event:Event) => {
-    console.log("token local stirage "+localStorage.getItem('token'));
+    console.log("token local storage "+localStorage.getItem('token'));
+    console.log("event " + event.image)
     return await axios.post(`${API}`,event, {
 
         headers: {

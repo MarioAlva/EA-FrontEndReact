@@ -10,7 +10,9 @@ type EventForm = {
     title: String;
     description: String;
     date: Date;
+	image: string;
 };
+
 
 const CreateEvent: React.FC = () => {
 	let clickCreateEvent = true
@@ -28,6 +30,7 @@ const CreateEvent: React.FC = () => {
         date: Yup.date()
           .required('Please enter a date')
           .min(new Date(), "The event must be in the future!"),
+		image: Yup.string(),
       });
 
     const {register,handleSubmit,formState: { errors }} = useForm<EventForm>({resolver: yupResolver(validationSchema)});
@@ -40,6 +43,11 @@ const CreateEvent: React.FC = () => {
         navigate('/event');
     });
 
+	// const onFileChange = (e) => {
+	// 	e.preventDefault() 
+
+	// }
+
 
     return (
         <div className="create-event-container">
@@ -51,6 +59,8 @@ const CreateEvent: React.FC = () => {
                 	
 					<label style={{marginBottom: "20px"}} htmlFor="regUsername">Date:<input type="date" {...register("date")}/><p className="error-message">{errors.date?.message}</p></label>
                 	
+					<label style={{marginBottom: "20px"}}>Image:<input  style={{marginBottom: "20px"}} type="text"  {...register("image")}/></label>
+				
     		    <div style={{width: "62%", display: "inline-flex", justifyContent: "center", marginBottom: "20px"}}>
     		    	<div style={{marginRight: "4%", display: "flex", flexDirection: "column", width: "62%"}}>
     		    	</div>
