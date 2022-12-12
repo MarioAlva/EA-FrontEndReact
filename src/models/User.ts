@@ -1,4 +1,4 @@
-import { Serie } from "./Serie";
+import Serie from "./Serie";
 
 export interface User {
     _id?: string;

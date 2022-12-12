@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Routes, Link, redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import Logo from './assets/img/logo.png';
 import Home from './components/Home';
 import Login from './components/Login';
@@ -6,13 +6,13 @@ import CreateEvent from './components/CreateEvent';
 import Event from './components/Events';
 import Profile from './components/Profile';
 import UpdateUser from './components/UpdateUser';
+import Serie from './components/Serie';
+import Search from './components/Search';
 import UpdateUserValues from './components/UpdateUserValues';
 import navOptions from './assets/data/navOptions';
 import Logout from './assets/img/logout.png';
 import login from './assets/img/login.png'; 
 import './App.css';
-import { RequireAuth } from 'react-auth-kit';
-import React, { Component, ChangeEvent, FormEvent, } from 'react'
 
 function App() {
   function logout(){
@@ -64,6 +64,8 @@ function App() {
             <Route path="/event" element={<Event />}></Route>
             <Route path='/profile' element = {<Profile />}></Route>
             <Route path='/updateUser' element = {<UpdateUser />}></Route>
+			<Route path='/search' element = {<Search />}></Route>
+			<Route path='/serie/:id' element = {<Serie />}></Route>
             <Route path='/updateUserValues' element = {<UpdateUserValues />}></Route>
           </Routes>
       </div>

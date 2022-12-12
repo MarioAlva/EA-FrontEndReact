@@ -1,25 +1,27 @@
-import React from 'react'
 import '../css/Event.css'
-import Logo from '../assets/img/logo.svg'
-import {Serie} from '../models/Serie'
-import { ChangeEvent, useEffect, useState } from 'react'
+import Serie from '../models/Serie'
 import * as serieService from '../services/SerieServices'
-import { stringify } from 'querystring'
-//import ReactPlayer from "react-player";
+import { useNavigate } from "react-router-dom"
 
   interface Props {
     serie: Serie;
     loadSeries: () => void;
   }
+
   
   const SerieList = (props: Props) => {
+	  const navigate = useNavigate();
     const { serie, loadSeries } = props;
         const handleDelete = async (id: string) => {
         await serieService.delSerie(id);
         loadSeries();
       };
+
+	  const clickSerie = () => {
+		navigate(`/serie/${serie._id}`);
+	  };
     return(
-      <div className="col-md-4 p-2">
+      <div onClick={clickSerie} className="col-md-4 p-2">
       <div
         className="card card-body video-card animate__animated animate__backInUp"
         style={{ cursor: "pointer" }}
