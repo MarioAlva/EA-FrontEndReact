@@ -11,21 +11,21 @@ const navOptions = [
         path: '/',
         icon: homeLogo,
         exact: true,
-		auth: true
+		auth: false
     },
     {
         name: 'Search',
         path: '/search',
         icon: searchLogo,
         exact: true,
-        auth: true
+        auth: false
     },
     {
         name: 'Events',
         path: '/event',
         icon: eventsLogo,
         exact: true,
-        auth: true
+        auth: false
     },
     {
         name: 'Profile',

@@ -4,8 +4,9 @@ import {User} from '../models/User'
 import { useState, useEffect } from "react";
 import jwt from "jsonwebtoken";
 import jwt_decode from "jwt-decode";
+import profileimg from '../assets/img/profileimg.png'
 
-const API = 'http://localhost:5432/api/users/'
+const API = 'http://api1.tvtracker.tk/api/users/'
 interface MyToken {
     id: string;
     email: string;
@@ -13,24 +14,22 @@ interface MyToken {
     exp: number;
   }
 export const RegisterUser = async (user:User) => {
+    // user.avatar = profileimg;
     return await axios.post(`${API}register`,user)
 }
 export {}
 
 export const LoginUser = async (user:User) => {
-    console.log(user);
-    const res = await axios.post(`http://localhost:5432/api/auth/login`,user).then(res => {
+    return await axios.post(`http://api1.tvtracker.tk/api/auth/login`,user).then(res => {
         //if (res.data.accessToken) {
             //localStorage.setItem('user', JSON.stringify(res.data));
             let token = res.data.token;
            
             localStorage.setItem('token', token);
             let decoded = jwt_decode(token) as MyToken;
-            console.log(decoded);
             const email = decoded.email;
-            console.log(email);
             const idUser = decoded.id;
-            console.log(idUser);
+            return res;
           //}
   
          // return res.data;
@@ -58,7 +57,7 @@ export const getProfile = async () => {
     console.log(email);
     const idUser = decoded.id;
     console.log(idUser);
-    return await axios.get(`${API}/profile/${idUser}`);
+    return await axios.get(`${API}profile/${idUser}`);
     //const idUser = decoded.id;
     //return await axios.get(`${API}/profile/user${idUser}`, );
 

@@ -1,7 +1,7 @@
 import axios from 'axios'
 import Serie from '../models/Serie'
 
-const API = 'http://localhost:5432/api/series/'
+const API = 'http://api1.tvtracker.tk/api/series/'
 
 const RegisterSerie = async (serie:Serie) => {
     return await axios.post(`${API}/`,serie)

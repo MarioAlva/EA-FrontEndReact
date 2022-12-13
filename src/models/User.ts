@@ -8,6 +8,7 @@ export interface User {
 	confirmPassword?:String;
 	birthdate?: Date;
 	email?: String;
+	avatar?: String;
 	series?: Serie[];
 }
 export {};

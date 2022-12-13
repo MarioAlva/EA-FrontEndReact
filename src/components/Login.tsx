@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import '../css/Login.css'
+import avatar from '../assets/img/profileimg.png'
 import * as userService from '../services/UserServices'
 import { useNavigate } from "react-router-dom"
 import { useForm } from "react-hook-form";
@@ -58,66 +59,21 @@ const Login: React.FC = () => {
     let [forgot, setForgot] = useState(false);
 
     const handleLog = formValidate(async (values) => {
-        const res = await userService.LoginUser(values);
-        console.log(res);
-        
-        
-            /*signIn({
-                token: res.data.token,
-                expiresIn: 3600,
-                tokenType: "Bearer",
-                authState: { email: values.email },
-            });
-            console.log("token " +res.data.token);
-            document.cookie = `token=${res.data.token}; max-age=${60*3}; path=/; samesite=strinct`;
-            console.log(document.cookie)*/
-        //if (res.data.success === false) {
-            
-
-
-
-            /*
-            toast.error(res.data.error, {
-              position: "top-right",
-              autoClose: 3000,
-              hideProgressBar: true,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: false,
-              progress: 0,
-              toastId: "my_toast",
-            });
-            */
-          //} else {
-            /*toast.success(res.data.message, {
-              position: "top-right",
-              autoClose: 3000,
-              hideProgressBar: true,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: false,
-              progress: 0,
-              toastId: "my_toast",
-            });*/
-        //}
-
-        /*
-        &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
-        VERIFICAR LOGIN CORRECTO
-        
-        if (res.data.success===true) {
-            console.log("logueado ok")
-          } else {
-        }*/
-
-        navigate('/');
+        const res : any = await userService.LoginUser(values);
+        console.log(res.data.auth);
+        if(res.data.auth){
+            window.location.href = "/";
+        } else{
+            console.log("Wrong username or password");
+        }
     });
 
     const handleReg = handleSubmit(async (values) => {
         const res = await userService.RegisterUser(values);
-        console.log(res);
-
-        navigate('/');
+        if(res.status === 200){
+            localStorage.setItem("token", res.data.token);
+            window.location.href = "/";
+        }
     });
 
     return (

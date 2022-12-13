@@ -16,7 +16,6 @@ import './App.css';
 
 function App() {
   function logout(){
-    console.log("loguot");
       localStorage.removeItem("token");
       window.location.assign('/login');
   }
@@ -37,12 +36,13 @@ function App() {
           </div>
           <div className="nav-options">
             {navOptions.map((option : any, index : any) => (
-				<Link to={option.path} key={index}>
+              (option.auth === true && token) || option.auth === false  ? 
+                <Link to={option.path} key={index}>
                 <div className="nav-option">
                   <img className='navBar-imageOptions' src={option.icon} alt={option.name} />
                   <div className='navBar-optionName'>{option.name}</div>
                 </div>
-              </Link>
+              </Link> : null
             ))}
           </div>
 			{token === null ? <Link className='logOut-navBar nav-option' style={{height: "auto", padding: "10px 0"}} to="/login" key="login">
@@ -64,8 +64,8 @@ function App() {
             <Route path="/event" element={<Event />}></Route>
             <Route path='/profile' element = {<Profile />}></Route>
             <Route path='/updateUser' element = {<UpdateUser />}></Route>
-			<Route path='/search' element = {<Search />}></Route>
-			<Route path='/serie/:id' element = {<Serie />}></Route>
+			      <Route path='/search' element = {<Search />}></Route>
+			      <Route path='/serie/:id' element = {<Serie />}></Route>
             <Route path='/updateUserValues' element = {<UpdateUserValues />}></Route>
           </Routes>
       </div>

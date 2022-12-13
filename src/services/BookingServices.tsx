@@ -1,7 +1,7 @@
 import axios from 'axios'
 import {Booking} from '../models/Booking'
 
-const API = 'http://localhost:5432/api/bookings/'
+const API = 'http://api1.tvtracker.tk/api/bookings/'
 
 export const getAllBookings = async () => {
     return await axios.get(`${API}`);
