@@ -37,10 +37,11 @@ const CreateEvent: React.FC = () => {
 	let navigate = useNavigate();
 
 	const sendEvent = handleSubmit(async (values) => {
+		console.log("----");
+		navigate('/event');
         const res = await eventService.RegisterEvent(values);
+		console.log("+++++");
         console.log(res);
-
-        navigate('/event');
     });
 
 	// const onFileChange = (e) => {
