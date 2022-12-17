@@ -6,7 +6,9 @@ import jwt from "jsonwebtoken";
 import jwt_decode from "jwt-decode";
 import profileimg from '../assets/img/profileimg.png'
 
-const API = 'http://api1.tvtracker.tk/api/users/'
+//const API = 'http://api1.tvtracker.tk/api/users/'
+const API = 'http://localhost:5432/api/users/'
+
 interface MyToken {
     id: string;
     email: string;
@@ -20,7 +22,8 @@ export const RegisterUser = async (user:User) => {
 export {}
 
 export const LoginUser = async (user:User) => {
-    return await axios.post(`http://api1.tvtracker.tk/api/auth/login`,user).then(res => {
+    //return await axios.post(`http://api1.tvtracker.tk/api/auth/login`,user).then(res => {
+    return await axios.post(`http://localhost:5432/api/auth/login`,user).then(res => {
         //if (res.data.accessToken) {
             //localStorage.setItem('user', JSON.stringify(res.data));
             let token = res.data.token;
