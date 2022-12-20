@@ -138,10 +138,10 @@ const UpdateUserValues: React.FC = () => {
                 <div className='login-input-container login-center'>
                     <button className='login-button' type="submit" onClick={handleRegi}>Update user</button>
                 </div>
-                <div className="back-button" style={{marginRight: "280vw"} }onClick={handleClick}>
-            </div>
+            <div className="back-button" style={{marginRight: "280vw"} }onClick={handleClick}>
+            </div> 
             </form>
-    </div>		
+        </div>		
     )
 }
 export default UpdateUserValues

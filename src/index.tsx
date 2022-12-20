@@ -6,11 +6,12 @@ import reportWebVitals from './reportWebVitals';
 import {AuthProvider} from "react-auth-kit";
 import { BrowserRouter } from 'react-router-dom';
 
+
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
-  <React.StrictMode>
+  
     <AuthProvider 
       authType={"cookie"}
       authName={"_auth"}
@@ -21,7 +22,7 @@ root.render(
         <App />
       
     </AuthProvider>
-  </React.StrictMode>
+  
 );
 
 // If you want to start measuring performance in your app, pass a function

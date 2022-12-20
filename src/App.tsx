@@ -12,7 +12,12 @@ import UpdateUserValues from './components/UpdateUserValues';
 import navOptions from './assets/data/navOptions';
 import Logout from './assets/img/logout.png';
 import login from './assets/img/login.png'; 
+import Chat from './components/Chat';
 import './App.css';
+import io from 'socket.io-client';
+
+
+//const socket = io('http://localhost:3001');
 
 function App() {
   function logout(){
@@ -67,6 +72,7 @@ function App() {
 			      <Route path='/search' element = {<Search />}></Route>
 			      <Route path='/serie/:id' element = {<Serie />}></Route>
             <Route path='/updateUserValues' element = {<UpdateUserValues />}></Route>
+            <Route path='/chat' element = {<Chat />}></Route>
           </Routes>
       </div>
     </div>
