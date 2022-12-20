@@ -26,7 +26,7 @@ const Serie: React.FC = () => {
     const joinRoom = () => {
         if (user?.username !== "" && room !== "") {
             console.log(user?.username);
-          socket.emit("join_room", serie?.title);
+          socket.emit("join_room", room);
           setShowChat(true);
         }
       };
