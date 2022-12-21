@@ -52,13 +52,10 @@ const Events: React.FC = () => {
 				<div style={{width: "50%", overflowY: "scroll", overflowX: "hidden"}}>
 					{eventList.map((event) => (
 						<div className="eventscreen-card">
-							<div>
-								<div className="eventscreen-card-image"><img width={100} src={Logo} alt="" /></div>
-							</div>
 							<div style={{width: "100%"}}>
 								<div className="eventscreen-card-title">{event.title}</div>
 								<div className="eventscreen-card-description">{event.description}</div>
-								<img src={event.image} ></img>
+								<img src={event.image}  height={100}></img>
 								<div className="eventscreen-card-date">
 									<Moment fromNow ago>{event.date?.toLocaleString("en-US")}</Moment>
 								</div>
