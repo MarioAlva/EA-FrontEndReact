@@ -6,6 +6,9 @@ import { useEffect, useState } from 'react'
 import * as eventService from '../services/EventServices'
 import Moment from 'react-moment'
 import { useNavigate } from "react-router-dom";
+import { MapContainer, TileLayer, useMap, Marker, Popup } from 'react-leaflet'
+import 'leaflet/dist/leaflet.css'
+import { Wrapper, Status } from "@googlemaps/react-wrapper";
 
 const Events: React.FC = () => {
 
@@ -65,6 +68,17 @@ const Events: React.FC = () => {
 
 				</div>
 				<div style={{width: "50%"}}>
+				<MapContainer center={[41.275188, 1.986412]} zoom={14} scrollWheelZoom={false}>
+  					<TileLayer
+    					attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    					url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+  					/>
+					<Marker position={[41.275188, 1.986412]}>
+    					<Popup>
+     						A pretty CSS3 popup. <br /> Easily customizable.
+    					</Popup>
+  					</Marker>
+				</MapContainer>
 				</div>
 			</div>
 

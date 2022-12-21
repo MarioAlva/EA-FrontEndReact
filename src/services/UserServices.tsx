@@ -53,10 +53,7 @@ export const getProfile = async () => {
     const token = localStorage.getItem('token')!;
     let decoded = jwt_decode(token) as MyToken;
     const email = decoded.email;
-    console.log(decoded);
-    console.log(email);
     const idUser = decoded.id;
-    console.log(idUser);
     return await axios.get(`${API}profile/${idUser}`);
     //const idUser = decoded.id;
     //return await axios.get(`${API}/profile/user${idUser}`, );
@@ -105,9 +102,6 @@ export const updateUser = async (user:User) => {
     const token = localStorage.getItem('token')!;
     let decoded = jwt_decode(token) as MyToken;
     const iduserupdate = decoded.id;
-    console.log("++++++++++++");
-    console.log(iduserupdate);
-
     return await axios.put(`${API}/${iduserupdate}`, user);
 
 }
