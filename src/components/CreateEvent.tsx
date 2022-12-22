@@ -5,16 +5,26 @@ import { useNavigate } from "react-router-dom"
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
+import Geocode from "react-geocode";
 
 type EventForm = {
     title: String;
     description: String;
     date: Date;
+	location: string;
+	lat: number;
+	lng: number;
 	image: string;
 };
 
 
 const CreateEvent: React.FC = () => {
+	Geocode.setApiKey("AIzaSyCP6ZOo_TOaXy0oVOGQJTF13GeqBQ6VRY0");
+	Geocode.setLanguage("en");
+	Geocode.setRegion("es");
+	Geocode.setLocationType("ROOFTOP");
+	Geocode.enableDebug();
+	
 	let clickCreateEvent = true
 	function sendCreateEvent() {
 		if (clickCreateEvent) {
@@ -30,6 +40,8 @@ const CreateEvent: React.FC = () => {
         date: Yup.date()
           .required('Please enter a date')
           .min(new Date(), "The event must be in the future!"),
+		location: Yup.string()
+			.required('Location is needed'),
 		image: Yup.string(),
       });
 
@@ -37,11 +49,24 @@ const CreateEvent: React.FC = () => {
 	let navigate = useNavigate();
 
 	const sendEvent = handleSubmit(async (values) => {
-		console.log("----");
-		navigate('/event');
-        const res = await eventService.RegisterEvent(values);
-		console.log("+++++");
-        console.log(res);
+		Geocode.fromAddress(values.location).then(
+			(response) => {
+			  const { lat, lng } = response.results[0].geometry.location;
+			  values.lat = lat;
+			  values.lng = lng;
+			  eventService.RegisterEvent(values).then(
+				(response) => {
+					navigate("/events")
+				},
+				(error) => {
+					console.log(error);
+				}
+			);
+			},
+			(error) => {
+			  console.error(error);
+			}
+		);
     });
 
 	// const onFileChange = (e) => {
@@ -60,6 +85,8 @@ const CreateEvent: React.FC = () => {
                 	
 					<label style={{marginBottom: "20px"}} htmlFor="regUsername">Date:<input type="date" {...register("date")}/><p className="error-message">{errors.date?.message}</p></label>
                 	
+    		        <label style={{marginBottom: "20px"}}>Location:<input type="text" placeholder="Location" {...register("location")}/><p className="error-message">{errors.location?.message}</p></label>
+
 					<label style={{marginBottom: "20px"}}>Image:<input  style={{marginBottom: "20px"}} type="text"  {...register("image")}/></label>
 				
     		    <div style={{width: "62%", display: "inline-flex", justifyContent: "center", marginBottom: "20px"}}>

@@ -9,10 +9,16 @@ import { useNavigate } from "react-router-dom";
 import { MapContainer, TileLayer, useMap, Marker, Popup } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
 import { Wrapper, Status } from "@googlemaps/react-wrapper";
+import L from 'leaflet';
 
 const Events: React.FC = () => {
+	const iconPerson = new L.Icon({
+		iconUrl: require('../assets/img/pin.png'),
+		iconRetinaUrl: require('../assets/img/pin.png'),
+		iconSize: new L.Point(40, 45),
+		className: ''
+	});
 
-	
 	const [eventList, setEvents] = useState<Event[]>([]);
 	const navigate = useNavigate();
 	const loadEvents = async () => {
@@ -65,16 +71,18 @@ const Events: React.FC = () => {
 
 				</div>
 				<div style={{width: "50%"}}>
-				<MapContainer center={[41.275188, 1.986412]} zoom={14} scrollWheelZoom={false}>
+				<MapContainer center={[41.275188, 1.986412]} zoom={14} scrollWheelZoom={true}>
   					<TileLayer
     					attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     					url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
   					/>
-					<Marker position={[41.275188, 1.986412]}>
+					{eventList.map((event) => (
+					<Marker icon={iconPerson} position={[event.lat, event.lng]}>
     					<Popup>
      						A pretty CSS3 popup. <br /> Easily customizable.
     					</Popup>
   					</Marker>
+					))}
 				</MapContainer>
 				</div>
 			</div>

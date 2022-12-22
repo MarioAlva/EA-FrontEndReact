@@ -9,12 +9,17 @@
 }
 
 .content-container{
-	width: calc(100% - 140px - 5%);
+	width: calc(100% - 70px);
+    position: fixed;
+    height: 100%;
+    margin-left: 70px;
+    overflow-y: auto;
+}
+
+.content {
     margin-right: 5%;
-    position: absolute;
     margin-left: 5%;
     margin-top: 5vh;
-    right: 0;
     height: calc(100% - 5vh);
 }
 

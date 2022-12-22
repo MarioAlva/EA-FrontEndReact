@@ -62,6 +62,7 @@ function App() {
             
         </div>
       <div className="content-container">
+		<div className="content">
           <Routes>
             <Route path="/" element={<Home />}></Route>
             <Route path="/login" element={<Login />}></Route>
@@ -74,6 +75,7 @@ function App() {
             <Route path='/updateUserValues' element = {<UpdateUserValues />}></Route>
             <Route path='/chat' element = {<Chat />}></Route>
           </Routes>
+		  </div>
       </div>
     </div>
     </Router>
