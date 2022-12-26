@@ -1,6 +1,5 @@
 import React from 'react'
-import '../css/Event.css'
-import Logo from '../assets/img/logo.svg'
+import '../css/Events.css'
 import {Event} from '../models/Event'
 import { useEffect, useState } from 'react'
 import * as eventService from '../services/EventServices'
@@ -33,19 +32,9 @@ const Events: React.FC = () => {
 	useEffect(() => {
 		loadEvents()
 	  }, [])
-	
-	function backCarrousel() {
-		let carrousel = document.getElementById("carrousel");
-		if (carrousel) {
-			carrousel.scrollLeft -= 300;
-		}
-	}
 
-	function nextCarrousel() {
-		let carrousel = document.getElementById("carrousel");
-		if (carrousel) {
-			carrousel.scrollLeft += 300;
-		}
+	function gotoevent(id : any) {
+		navigate("/event/" + id);
 	}
 
 	return (
@@ -57,7 +46,7 @@ const Events: React.FC = () => {
 			<div className='event-eventsContainer'>
 				<div style={{width: "50%", overflowY: "scroll", overflowX: "hidden"}}>
 					{eventList.map((event) => (
-						<div className="eventscreen-card">
+						<div onClick={() => gotoevent(event._id)} className="eventscreen-card">
 							<div style={{width: "100%"}}>
 								<div className="eventscreen-card-title">{event.title}</div>
 								<div className="eventscreen-card-description">{event.description}</div>

@@ -3,7 +3,8 @@ import Logo from './assets/img/logo.png';
 import Home from './components/Home';
 import Login from './components/Login';
 import CreateEvent from './components/CreateEvent';
-import Event from './components/Events';
+import Events from './components/Events';
+import Event from './components/Event';
 import Profile from './components/Profile';
 import UpdateUser from './components/UpdateUser';
 import Serie from './components/Serie';
@@ -67,11 +68,12 @@ function App() {
             <Route path="/" element={<Home />}></Route>
             <Route path="/login" element={<Login />}></Route>
             <Route path="/event/create" element={<CreateEvent />}></Route>
-            <Route path="/event" element={<Event />}></Route>
+            <Route path="/event" element={<Events />}></Route>
             <Route path='/profile' element = {<Profile />}></Route>
             <Route path='/updateUser' element = {<UpdateUser />}></Route>
-			      <Route path='/search' element = {<Search />}></Route>
-			      <Route path='/serie/:id' element = {<Serie />}></Route>
+			<Route path='/search' element = {<Search />}></Route>
+			<Route path='/serie/:id' element = {<Serie />}></Route>
+			<Route path='/event/:id' element = {<Event />}></Route>
             <Route path='/updateUserValues' element = {<UpdateUserValues />}></Route>
             <Route path='/chat' element = {<Chat />}></Route>
           </Routes>
