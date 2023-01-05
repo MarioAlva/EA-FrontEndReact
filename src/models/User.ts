@@ -10,5 +10,6 @@ export interface User {
 	email?: String;
 	avatar?: String;
 	series?: Serie[];
+	
 }
 export {};

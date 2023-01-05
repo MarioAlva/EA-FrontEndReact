@@ -9,6 +9,10 @@ import io from 'socket.io-client';
 import { User } from '../models/User';
 import * as userService from '../services/UserServices'
 import Chat from './Chat';
+import { faHeart } from "@fortawesome/free-solid-svg-icons";
+import { faHeartBroken } from "@fortawesome/free-solid-svg-icons";
+  
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const socket = io('http://localhost:3001');
 
 const Serie: React.FC = () => {
@@ -24,9 +28,9 @@ const Serie: React.FC = () => {
     const [user, setUser] = useState<User>();
 
     const joinRoom = () => {
-        if (user?.username !== "" && room !== "") {
+        if (user?.username !== "" && serie?._id !== "") {
             console.log(user?.username);
-          socket.emit("join_room", room);
+          socket.emit("join_room", serie?._id);
           setShowChat(true);
         }
       };
@@ -47,6 +51,21 @@ const Serie: React.FC = () => {
 	useEffect(() => {
 		load();
 	});
+
+    const addSerieFav = async () => {
+        console.log(user?._id);
+        console.log(serie?._id);
+        console.log("aaaaaaaaaaaaaaa");
+        const added = await userService.addSerieFav(user?._id as string, serie?._id as string);
+        console.log(added);
+        //setUser(added.data);
+        //console.log(user?.series);
+    }
+    /*const test = async () => {
+         console.log("HERE");
+         console.log(user?.series?.map);
+    }*/
+    
     return (
         <div className='serie-container'>
             
@@ -58,10 +77,14 @@ const Serie: React.FC = () => {
                     </h1>
                 </div>
                     <div id='serieInfo_container'>
+
                     <div id='sinopsis_container'>
+                        <button onClick={joinRoom}>Join a room to chat about the serie</button>
+                        
                         <h2>Sinopsis:</h2>
                         <p>{serie?.overview}</p>
                     </div>
+                    
                     <div id='chapter_container'>
                         {serie?.episodes.map((chapter, index) => {
                             return (
@@ -74,24 +97,33 @@ const Serie: React.FC = () => {
                         })}
                     </div>
                 </div>
-                
                 <h3> Join a Chat</h3>
-                <h3> Join a Chat</h3>
-                <h3> Join a Chat</h3>
-                <h3> Join a Chat</h3>
-                <h3> Join a Chat</h3>
-                <input
+                {/* <input
                     type="text"
                     placeholder="Room"
                     onChange={(e) => setRoom(e.target.value)}
-                /> 
-                <button onClick={joinRoom}>Join Room</button>
+                />  */}
+                {/* <button onClick={joinRoom}>Join a room to chat about the serie</button> */}
                 
             </div>
-            ) : (
-            <Chat socket={socket} username={user?.username}room={room}/>
-            )}
             
+            ) : (
+            <Chat socket={socket} username={user?.username}room={serie?._id}/>
+            )}
+            {/* <button className="add-fav-button" onClick={addSerieFav}>Add to fav</button> */}
+            {/* <div
+            className="container"
+            style={{ border: "1px solid black", width: "15%" }}
+            onClick={() => this.toggle()}
+          >
+            {user?.series? === serie?._id ? ( */}
+              {/* <FontAwesomeIcon icon={faHeart} /> */}
+            {/* ) : ( */}
+              {/* <FontAwesomeIcon icon={faHeartBroken} /> */}
+            {/* )}
+          </div> */}
+          <button className="add-fav-button" onClick={addSerieFav}>Add to fav</button>
+
         </div>
     )
 }

@@ -7,6 +7,13 @@ function Chat({ socket, username, room }: any) {
     //const { socket, uid, users } = useContext(SocketContext).SocketState;
     const [currentMessage, setCurrentMessage] = useState("");
     const [messageList, setMessageList] = useState([] as any[]);
+    const zero = (minutes : any) => {
+      if (minutes < 10) {
+        return "0" + minutes;
+      } else {
+        return minutes;
+      }
+    };
     const sendMessage = async () => {
       if (currentMessage !== "") {
         const messageData = {
@@ -15,9 +22,7 @@ function Chat({ socket, username, room }: any) {
           message: currentMessage,
           time: 
             new Date(Date.now()).getHours() +
-            ":" +
-            new Date(Date.now()).getMinutes(),
-
+            ":" + zero(new Date(Date.now()).getMinutes()),
         };
         await socket.emit("send_message", messageData);
         setMessageList((list) => [...list, messageData]);
@@ -48,8 +53,8 @@ function Chat({ socket, username, room }: any) {
                         <p>{messageContent.message}</p>
                     </div>
                     <div className="message-meta">
-                        <p id="time">{messageContent.time}</p>
                         <p id="author">{messageContent.author}</p>
+                        <p id="time">{messageContent.time}</p>
                     </div>
                 </div>
                 );
@@ -64,6 +69,7 @@ function Chat({ socket, username, room }: any) {
               onChange={(event) => {
                setCurrentMessage(event.target.value);
               }}
+              
               onKeyDown={(event) => {
                 event.key === "Enter" && sendMessage();
               }}

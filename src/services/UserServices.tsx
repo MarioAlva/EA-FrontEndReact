@@ -115,8 +115,8 @@ export const getUser = async (id: string) => {
 }
 export {}
 
-export const addSerieFav = async (idUser: string, idSerie:String) => {
-    return await axios.put(`${API}/serie/${idUser}/${idSerie}`);
+export const addSerieFav = async (idUser: string, idSerie: string) => {
+    return await axios.put(`${API}/addserie/${idUser}/${idSerie}`);
 }
 export {}
 
