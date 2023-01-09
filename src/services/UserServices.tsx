@@ -120,3 +120,6 @@ export const addSerieFav = async (idUser: string, idSerie: string) => {
 }
 export {}
 
+export const delSerie = async (idUser: string, idSerie: string) => {
+    return await axios.put(`${API}/delserie/${idUser}/${idSerie}`);
+}

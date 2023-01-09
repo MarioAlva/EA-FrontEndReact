@@ -26,7 +26,10 @@ const Serie: React.FC = () => {
     const [room, setRoom] = useState("");
     const [showChat, setShowChat] = useState(false);
     const [user, setUser] = useState<User>();
-
+    
+    const [follow, setFollow] = useState(false);
+    const [buttonText, setButtonText] = useState('Add to favorite');
+    
     const joinRoom = () => {
         if (user?.username !== "" && serie?._id !== "") {
             console.log(user?.username);
@@ -55,11 +58,21 @@ const Serie: React.FC = () => {
     const addSerieFav = async () => {
         console.log(user?._id);
         console.log(serie?._id);
+        
         console.log("aaaaaaaaaaaaaaa");
+        setFollow(true);
+        setButtonText('Remove from favorite');
         const added = await userService.addSerieFav(user?._id as string, serie?._id as string);
         console.log(added);
         //setUser(added.data);
         //console.log(user?.series);
+    }
+    const delSerie = async () => {
+        console.log("deleted");
+        setFollow(false);
+        setButtonText('Add to favorite');
+        const deleted = await userService.delSerie(user?._id as string, serie?._id as string);
+        console.log(deleted);
     }
     /*const test = async () => {
          console.log("HERE");
@@ -122,8 +135,10 @@ const Serie: React.FC = () => {
               {/* <FontAwesomeIcon icon={faHeartBroken} /> */}
             {/* )}
           </div> */}
-          <button className="add-fav-button" onClick={addSerieFav}>Add to fav</button>
-
+          
+         {follow ? <button className="del-fav-button" onClick={delSerie}>Remove from favorite</button> : <button className="add-fav-button" onClick={addSerieFav}>Add to favorite</button>}
+           {/* <button className={follow ? "add-fav-button": "del-fav-button"} onClick= {addSerieFav}>{buttonText}</button> */}
+        
         </div>
     )
 }
