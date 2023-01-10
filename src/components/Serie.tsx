@@ -14,6 +14,7 @@ import { faHeartBroken } from "@fortawesome/free-solid-svg-icons";
   
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const socket = io('http://localhost:3001');
+//const socket = io('http://api1.tvtracker.tk');
 
 const Serie: React.FC = () => {
     
@@ -37,24 +38,41 @@ const Serie: React.FC = () => {
           setShowChat(true);
         }
       };
-      const loadUser = async () => {
-		const user = await userService.getProfile();
-        const getUser = user.data as User;
-        setUser(getUser);
-	  }
+    const loadUser = async () => {
+
+		    const user = await userService.getProfile();
+            
+            const getUser = user.data as User;
+            setUser(getUser);     
+            console.log(getUser);
+            console.log("kajhgklajshfklashg");
+            const serie = await serieService.getSerie(id as string);
+            setSerie(serie.data);
+            
+            const filt = getUser.serie?.some((obj) => obj === serie.data._id);
+            if (filt === true){
+                setFollow(true);
+            }
+            else{
+                setFollow(false);
+            }
+            console.log(filt);
+            console.log("bbbbb");
+            console.log(getUser.serie);
+            console.log("aaaaa");
+            console.log(serie.data);
+            console.log(user);
+        
+	}
 	useEffect(() => {
-		loadUser()
+		loadUser();
 	  }, [])
 
-	const load = async () => {
-		const serie = await serieService.getSerie(id as string);
-		setSerie(serie.data);
-  	};
 
-	useEffect(() => {
-		load();
-	});
-
+	// useEffect(() => {
+	// 	load();
+	// }, []);
+   
     const addSerieFav = async () => {
         console.log(user?._id);
         console.log(serie?._id);
@@ -64,8 +82,6 @@ const Serie: React.FC = () => {
         setButtonText('Remove from favorite');
         const added = await userService.addSerieFav(user?._id as string, serie?._id as string);
         console.log(added);
-        //setUser(added.data);
-        //console.log(user?.series);
     }
     const delSerie = async () => {
         console.log("deleted");
@@ -74,10 +90,6 @@ const Serie: React.FC = () => {
         const deleted = await userService.delSerie(user?._id as string, serie?._id as string);
         console.log(deleted);
     }
-    /*const test = async () => {
-         console.log("HERE");
-         console.log(user?.series?.map);
-    }*/
     
     return (
         <div className='serie-container'>
