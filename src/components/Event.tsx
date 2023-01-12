@@ -7,7 +7,6 @@ import { Event } from '../models/Event'
 import axios from 'axios'
 import { MapContainer, TileLayer, useMap, Marker, Popup } from 'react-leaflet'
 import L from 'leaflet';
-import { width } from '@mui/system'
 
 
 
@@ -54,7 +53,6 @@ const Eventpage: React.FC = () => {
 	  }, [])
 	function setRate (rate: string){
 		document.documentElement.style.setProperty('--start', rate);
-		console.log(rate);
 		return;
 	}
     return (
@@ -86,7 +84,16 @@ const Eventpage: React.FC = () => {
 				</div>
 			</div>
 			<div className="event-footer">
-				<div className="event-valoration"></div>
+				<div className="event-valoration">
+					<div className="mid-rating"></div>
+					<div className="valorations-graphic">
+						<div className="valoration-graphic"></div>
+						<div className="valoration-graphic"></div>
+						<div className="valoration-graphic"></div>
+						<div className="valoration-graphic"></div>
+						<div className="valoration-graphic"></div>
+					</div>
+				</div>
 				<div className="event-comments">
 					<span className='comments-title'>Comments</span>
 					{comments.map((comment, index) => {
