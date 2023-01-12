@@ -9,6 +9,7 @@ export interface User {
 	birthdate?: Date;
 	email?: String;
 	avatar?: String;
-	series?: Serie[];
+	serie?: Serie[];
+	
 }
 export {};

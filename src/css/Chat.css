@@ -34,8 +34,8 @@ body {
 }
 
 .joinChatContainer button {
-  width: 225px;
-  height: 50px;
+  width: 155px;
+  height: 43px;
   margin: 7px;
   border: none;
   border-radius: 5px;
@@ -44,6 +44,7 @@ body {
   background: #43a047;
   color: #fff;
   cursor: pointer;
+  margin-left: -81%;
 }
 
 .joinChatContainer button:hover {
@@ -150,7 +151,7 @@ body {
 }
 
 .chat-window .chat-body .message .message-meta {
-  display: flex;
+  /* display: flex; */
   font-size: 12px;
 }
 
