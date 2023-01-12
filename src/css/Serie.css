@@ -1,0 +1,109 @@
+#trailer_serie{
+    width: 100%;
+    height: 300px;
+    margin-top: -5vh;
+    background-color: rgba(167, 167, 167, 0.8);
+}
+
+#trailer_serie::before{
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 300px;
+    z-index: 1;
+    background: linear-gradient(to bottom, #1f1f1f00 30%, #1F1F1F);
+}
+
+.serie-title{
+    position: absolute;
+    font-size: 2.5em;
+    font-weight: bold;
+    color: #fff;
+    z-index: 1;
+    text-align: center;
+    margin-top: 240px;
+    margin-left: 2%;
+}
+
+#sinopsis_container{
+    width: 70%;
+    height: auto;
+    background-color: #1f1f1f;
+    margin-top: 10px;
+}
+
+#sinopsis_container h2{
+    color: #fff;
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-left: 5%;
+    margin-top: 10px;
+}
+
+#sinopsis_container p{
+    color: #fff;
+    font-size: 1em;
+    margin-left: 6%;
+    padding: 10px 0;
+}
+
+.chapter{
+    width: 70%;
+    padding: 15px;
+    margin: 8px 0;
+    border-radius: 50rem;
+    background-color: #171717;
+	margin-left: 5%;
+}
+
+.chapter:hover{
+    background-color: #191919;
+	cursor: pointer;
+}
+
+.chapter:active{
+    background-color: #1b1b1b;
+}
+
+.chapter-title{
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #fff;
+    margin-left: 2%;
+}
+.chat-button{
+	background-color: #151515;
+	color: #9F9F9F;
+	border-radius: 7px;
+	width: 120px;
+	max-width: 50vw;
+	border: none;
+	position: absolute;
+    top: 40%;
+    right: 0%;
+	cursor: pointer;
+}
+.add-fav-button{
+	background-color: #00ffbb;
+    color: #ffffff;
+    border-radius: 7px;
+    width: 120px;
+    max-width: 50vw;
+    border: none;
+    position: absolute;
+    top: 1%;
+    left: 6%;
+    cursor: pointer;
+}
+.del-fav-button{
+	background-color: #c300ff;
+    color: #9F9F9F;
+    border-radius: 7px;
+    width: 120px;
+    max-width: 50vw;
+    border: none;
+    position: absolute;
+    top: 1%;
+    left: 6%;
+    cursor: pointer;
+}
