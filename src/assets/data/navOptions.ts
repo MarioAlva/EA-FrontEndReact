@@ -4,6 +4,8 @@ import EventArrow from '../img/EventArrow.png';
 import profileimg from '../img/profileimg.png';
 import searchLogo from '../img/search.png';
 import eventsLogo from '../img/events.png';
+import reportLogo from '../img/reportimg.png';
+
 
 const navOptions = [
     {
@@ -31,6 +33,13 @@ const navOptions = [
         name: 'Profile',
         path: '/profile',
         icon: profileimg,
+        exact: true,
+        auth: true
+    },
+    {
+        name: 'Report',
+        path: '/report',
+        icon: reportLogo,
         exact: true,
         auth: true
     }

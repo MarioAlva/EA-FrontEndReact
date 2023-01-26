@@ -60,7 +60,6 @@ const Login: React.FC = () => {
 
     const handleLog = formValidate(async (values) => {
         const res : any = await userService.LoginUser(values);
-        console.log(res.data.auth);
         if(res.data.auth){
             window.location.href = "/";
         } else{
@@ -71,6 +70,7 @@ const Login: React.FC = () => {
     const handleReg = handleSubmit(async (values) => {
         const res = await userService.RegisterUser(values);
         if(res.status === 200){
+			localStorage.setItem("user", res.data.id);
             localStorage.setItem("token", res.data.token);
             window.location.href = "/";
         }
