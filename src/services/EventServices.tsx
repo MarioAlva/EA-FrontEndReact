@@ -33,5 +33,9 @@ export {}
 export const getEvent = async (id: string) => {
     return await axios.get(`${API}${id}`);
 }
+
+export const addComment = async (id: string, owner: string, comment: string, rate: number) => {
+	return await axios.post(`${API}${id}/comments`, {owner: owner, content: comment, likes: rate});
+}
 export {}
 

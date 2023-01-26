@@ -27,7 +27,7 @@ export const LoginUser = async (user:User) => {
         //if (res.data.accessToken) {
             //localStorage.setItem('user', JSON.stringify(res.data));
             let token = res.data.token;
-           
+           	localStorage.setItem('user', res.data.session.id);
             localStorage.setItem('token', token);
             let decoded = jwt_decode(token) as MyToken;
             const email = decoded.email;

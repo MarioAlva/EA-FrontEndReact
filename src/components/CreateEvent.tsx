@@ -14,6 +14,7 @@ type EventForm = {
 	location: string;
 	lat: number;
 	lng: number;
+	comments: Array<any>;
 	image: string;
 };
 

@@ -4,6 +4,12 @@
 	background-color: #242424;
 }
 
+.event-center{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
 .event-bodyHeader{
 	display: inline-flex;
 }
@@ -61,6 +67,32 @@
 	width: 65%;
 	height: 100%;
 	padding-left: 10px;
+	display: flex;
+	flex-direction: column;
+}
+
+textarea{
+	width: 80%;
+	height: 20px;
+	border: none;
+	padding: 10px;
+	font-size: 17px;
+	font-family: Roboto;
+	margin-right: 2%;
+}
+
+.comment-button{
+	cursor: pointer;
+	width: 50px;
+	height: 100%;
+	border-top-left-radius: 10px;
+	border-bottom-left-radius: 10px;
+	border: none;
+	background-color: #d2d2d2;
+	color: #FFFDFD;
+	font-size: 17px;
+	font-family: Roboto;
+	font-weight: 600;
 }
 
 .comments-title{

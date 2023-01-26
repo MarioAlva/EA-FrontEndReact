@@ -1,4 +1,5 @@
 import { User } from "./User";
+import { Comment } from "./Comment";
 
 export interface Event {
     _id?: string;
@@ -11,7 +12,7 @@ export interface Event {
 	lat: number;
 	lng: number;
     participants?: User[];
-    comments?: Comment[];
+    comments: Comment[];
     vote_average?: Number;
     vote_count?: Number;
 }

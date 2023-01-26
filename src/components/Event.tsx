@@ -8,6 +8,7 @@ import axios from 'axios'
 import { MapContainer, TileLayer, useMap, Marker, Popup } from 'react-leaflet'
 import L from 'leaflet';
 import { width } from '@mui/system'
+import send from '../assets/img/send.svg'
 
 
 
@@ -44,18 +45,23 @@ const Eventpage: React.FC = () => {
 	});
 	const { id } = useParams<{ id: string }>();
 	const [event, setEvent] = useState<Event>();
-	const loadEvent = async (id : string) => {
+	const [comment, setCommenta] = useState<string>('');
+	const [rate, setRate] = useState<number>(0);
+	const loadEvent = async (id : any) => {
 		const eve = await eventService.getEvent(id);
         const getEvent = eve.data as Event;
         setEvent(getEvent);
 	  }
+	const addComment = async (id : string, owner: string, comment : string, rate : number) => {
+		if(comment === '') return;
+		await eventService.addComment(id, owner, comment, rate);
+		(document.getElementById("comment_textArea") as HTMLInputElement).value = '';
+	}	
 	useEffect(() => {
-		// loadEvent(id)
-	  }, [])
-	function setRate (rate: string){
-		document.documentElement.style.setProperty('--start', rate);
-		console.log(rate);
-		return;
+		loadEvent(id)
+	})
+	function setComment (){
+		setCommenta((document.getElementById("comment_textArea") as HTMLInputElement).value as string);
 	}
     return (
 		<div className="event-container">
@@ -63,24 +69,24 @@ const Eventpage: React.FC = () => {
 			</div>
 			<div className="event-body">
 				<div className="event-bodyHeader">
-					<span className='event-title'>Event Title</span>
+					<span className='event-title'>{event?.title}</span>
 					<span className='event-author'>Author</span>
 				</div>
 				<hr />
 				<div className="event-description">
-					<span>lorem ipsum</span>
+					<span>{event?.description}</span>
 				</div>
 				<div className="event-buttons">
 					<button className="event-button" style={{backgroundColor: "#001D48"}}>Participate</button>
 					<button className="event-button" style={{backgroundColor: "#4D0000"}}>Report</button>
 				</div>
 				<div className="event-map">
-					<MapContainer center={[41.275188, 1.986412]} zoom={16} scrollWheelZoom={false} zoomControl={false} doubleClickZoom={false}>
+					<MapContainer center={[event ? event.lat : 0, event ? event.lng : 0]} zoom={16} scrollWheelZoom={false} zoomControl={false} doubleClickZoom={false}>
 						<TileLayer
 							attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 							url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
 						/>
-						<Marker icon={iconPerson} position={[41.275188, 1.986412]}>
+						<Marker icon={iconPerson} position={[event ? event.lat : 0, event ? event.lng : 0]}>
 						</Marker>
 					</MapContainer>
 				</div>
@@ -89,18 +95,26 @@ const Eventpage: React.FC = () => {
 				<div className="event-valoration"></div>
 				<div className="event-comments">
 					<span className='comments-title'>Comments</span>
-					{comments.map((comment, index) => {
+					<div className='event-center' style={{flexDirection: "row", backgroundColor: "white", borderRadius: "10px"}}>
+						<button className='comment-button' onClick={() => addComment(id!, localStorage.getItem('user')!, comment, 0)}>
+							<img src={send} width="70%" alt="send" />
+						</button>
+						<textarea onChange={setComment} id="comment_textArea" style={{borderRight: "1px solid gray"}}>
+						</textarea>
+						<div className='comment-rating' style={{backgroundColor: "gray", width: "150px"}}></div>
+					</div>
+					{event?.comments.map((comment, index) => {
 						return (
 							<div className="comment-container">
 								<div className="comment-body">
-									<span>{comment.comment}</span>
+									<span>{comment.content}</span>
 								</div>
 								<div className="comment-footer">
 									<div className="comment-valoration">
 										<div className='comment-rating'>
 										</div>
 									</div>
-									<span className="comment-author">Author</span>
+									<span className="comment-author">{comment.owner.username}</span>
 								</div>
 							</div>
 						)
