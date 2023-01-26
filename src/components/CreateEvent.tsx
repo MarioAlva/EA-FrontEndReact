@@ -6,6 +6,8 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 import Geocode from "react-geocode";
+import { rejects } from 'assert';
+import { resolve } from 'node:path/win32';
 
 type EventForm = {
     title: String;
@@ -46,15 +48,52 @@ const CreateEvent: React.FC = () => {
 		image: Yup.string(),
       });
 
-    const {register,handleSubmit,formState: { errors }} = useForm<EventForm>({resolver: yupResolver(validationSchema)});
+    const {register,handleSubmit, setValue,formState: { errors }} = useForm<EventForm>({resolver: yupResolver(validationSchema)});
+
 	let navigate = useNavigate();
 
-	const sendEvent = handleSubmit(async (values) => {
+
+	let imageSaved :string
+
+
+ const onFileInputChange = async ({target}: {target:any}) => {
+ 	if(target.files === 0) return "";
+		
+	const cloudUrl = 'https://api.cloudinary.com/v1_1/dl8v2gowj/upload';
+ 	const formData= new FormData();
+ 	console.log("esto es el target file : " + target.files[0])
+	formData.append('upload_preset', 'ea-event');
+ 	formData.append('file',target.files[0])
+		
+
+ 	try {
+ 		const resp = await fetch(cloudUrl,{
+			method: 'POST',
+			body: formData
+		});
+		console.log(resp);
+ 		if(!resp.ok) throw new Error('No se pudo subir imagen')
+		const cloudResp = await resp.json();
+	console.log(cloudResp.secure_url);
+		imageSaved = cloudResp.secure_url;
+ 		return cloudResp.secure_url
+ 	}
+	catch (error) {
+			
+		throw new Error('No hay ningun archivo a subir')
+
+	}
+		
+ }
+
+	const sendEvent = handleSubmit(async (values)=> {
 		Geocode.fromAddress(values.location).then(
-			(response) => {
-			  const { lat, lng } = response.results[0].geometry.location;
-			  values.lat = lat;
-			  values.lng = lng;
+			async (response) => {
+			 const { lat, lng } = response.results[0].geometry.location;
+			values.lat = lat;
+			values.lng = lng;
+			  values.image = imageSaved
+			  console.log("values image :" + values.image)
 			  eventService.RegisterEvent(values).then(
 				(response) => {
 					navigate("/events")
@@ -70,6 +109,7 @@ const CreateEvent: React.FC = () => {
 		);
     });
 
+ 
 	// const onFileChange = (e) => {
 	// 	e.preventDefault() 
 
@@ -88,7 +128,7 @@ const CreateEvent: React.FC = () => {
                 	
     		        <label style={{marginBottom: "20px"}}>Location:<input type="text" placeholder="Location" {...register("location")}/><p className="error-message">{errors.location?.message}</p></label>
 
-					<label style={{marginBottom: "20px"}}>Image:<input  style={{marginBottom: "20px"}} type="text"  {...register("image")}/></label>
+					<label style={{marginBottom: "20px"}}>Image:<input type="file" onChange={onFileInputChange}/></label>
 				
     		    <div style={{width: "62%", display: "inline-flex", justifyContent: "center", marginBottom: "20px"}}>
     		    	<div style={{marginRight: "4%", display: "flex", flexDirection: "column", width: "62%"}}>

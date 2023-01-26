@@ -1,7 +1,7 @@
 import axios from 'axios'
 import {Event} from '../models/Event'
 
-//const API = 'http://api1.tvtracker.tk/api/events/'
+//const API = 'https://api1.tvtracker.tk/api/events/'
 const API = 'http://localhost:5432/api/events/'
 
 export const RegisterEvent = async (event:Event) => {

@@ -14,6 +14,7 @@ import navOptions from './assets/data/navOptions';
 import Logout from './assets/img/logout.png';
 import login from './assets/img/login.png'; 
 import Chat from './components/Chat';
+import Report from './components/Report';
 import './App.css';
 import io from 'socket.io-client';
 
@@ -76,6 +77,8 @@ function App() {
 			<Route path='/event/:id' element = {<Event />}></Route>
             <Route path='/updateUserValues' element = {<UpdateUserValues />}></Route>
             <Route path='/chat' element = {<Chat />}></Route>
+            <Route path='report' element = {<Report />}></Route>
+
           </Routes>
 		  </div>
       </div>

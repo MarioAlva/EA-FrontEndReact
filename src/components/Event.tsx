@@ -92,7 +92,16 @@ const Eventpage: React.FC = () => {
 				</div>
 			</div>
 			<div className="event-footer">
-				<div className="event-valoration"></div>
+				<div className="event-valoration">
+					<div className="mid-rating"></div>
+					<div className="valorations-graphic">
+						<div className="valoration-graphic"></div>
+						<div className="valoration-graphic"></div>
+						<div className="valoration-graphic"></div>
+						<div className="valoration-graphic"></div>
+						<div className="valoration-graphic"></div>
+					</div>
+				</div>
 				<div className="event-comments">
 					<span className='comments-title'>Comments</span>
 					<div className='event-center' style={{flexDirection: "row", backgroundColor: "white", borderRadius: "10px"}}>

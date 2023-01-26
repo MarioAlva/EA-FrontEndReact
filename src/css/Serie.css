@@ -83,3 +83,27 @@
     right: 0%;
 	cursor: pointer;
 }
+.add-fav-button{
+	background-color: #00ffbb;
+    color: #ffffff;
+    border-radius: 7px;
+    width: 120px;
+    max-width: 50vw;
+    border: none;
+    position: absolute;
+    top: 1%;
+    left: 6%;
+    cursor: pointer;
+}
+.del-fav-button{
+	background-color: #c300ff;
+    color: #9F9F9F;
+    border-radius: 7px;
+    width: 120px;
+    max-width: 50vw;
+    border: none;
+    position: absolute;
+    top: 1%;
+    left: 6%;
+    cursor: pointer;
+}
