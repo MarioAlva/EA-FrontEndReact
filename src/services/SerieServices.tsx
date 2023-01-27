@@ -9,7 +9,12 @@ const RegisterSerie = async (serie:Serie) => {
 }
 
 const getAllSeries = async () => {
-    return await axios.get(`${API}`);
+    console.log(localStorage.getItem('token'));
+    return await axios.get(`${API}`, {
+        headers: {
+            'x-access-token': localStorage.getItem('token')
+        }
+    });
 }
 
 const delSerie = async (id: string) => {

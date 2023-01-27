@@ -13,8 +13,8 @@ import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { faHeartBroken } from "@fortawesome/free-solid-svg-icons";
   
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-const socket = io('http://localhost:3001');
-//const socket = io('http://api1.tvtracker.tk');
+//const socket = io('http://localhost:3001');
+const socket = io('http://api1.tvtracker.tk');
 
 const Serie: React.FC = () => {
     
