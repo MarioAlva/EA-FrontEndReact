@@ -10,9 +10,9 @@ import * as userService from '../services/UserServices'
 import { User } from '../models/User';
 
 type ReportForm = {
-    user_to_report: String,
-    reason: String
-	
+    user_reported: String,
+    reason: String,
+	date: Date
 };
 
 
@@ -51,7 +51,7 @@ useEffect(() => {
 	}
 
 	const validationSchema = Yup.object().shape({
-        user_to_report: Yup.string().required('To report a user you must introduce his/her username'),
+        user_reported: Yup.string().required('To report a user you must introduce his/her username'),
         reason: Yup.string()
           .required('Explaining the reason to report is required')
           .min(6, 'Description must be at least 6 characters')
@@ -69,7 +69,7 @@ useEffect(() => {
 
 	const sendEvent = handleSubmit(async (values)=> {
         console.log(values);
-        const user2 = await userService.getOneUser(values.user_to_report as string);
+        const user2 = await userService.getOneUser(values.user_reported as string);
 
         if(user2.data === null){
             console.log("User not found");
@@ -78,6 +78,9 @@ useEffect(() => {
         else{
             console.log("User found");
             setExists(true);
+            
+            values.date = new Date();
+
             reportService.sendReport(user?._id as string, values).then(
                 (response) => {
                     navigate("/")
@@ -95,7 +98,7 @@ useEffect(() => {
         <div className="create-event-container">
     		<form action="createEvent" className="create-event" style={clickCreateReport ? {marginLeft: "0vw", paddingBottom: "20px", width: "450px"} : {paddingBottom: "20px", width: "450px"}} onSubmit={sendEvent} >
     		    <span className="create-event-header">Send a report</span>
-    		        <label style={{marginBottom: "5px"}}>User to report:<input type="text" placeholder="Insert the username of the user to be reported" {...register("user_to_report")}/><p className="error-message">{errors.user_to_report?.message}</p></label>
+    		        <label style={{marginBottom: "5px"}}>User to report:<input type="text" placeholder="Insert the username of the user to be reported" {...register("user_reported")}/><p className="error-message">{errors.user_reported?.message}</p></label>
                     {show ? 
                     exists ? <label style={{marginBottom: "20px"}}>Exists</label> : <label style={{marginBottom: "20px"}}>Username introduced does not exist</label>
                      : <label style={{marginBottom: "20px"}}></label>}

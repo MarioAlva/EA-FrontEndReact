@@ -62,7 +62,7 @@ const UpdateUser: React.FC = () => {
         setUser(getUser);
     }
     useEffect(() => {
-        // loadUser()
+        loadUser()
     }, [])
 
     const [selectedFile, setSelectedFile] = useState()
