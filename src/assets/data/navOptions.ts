@@ -6,8 +6,12 @@ import searchLogo from '../img/search.png';
 import eventsLogo from '../img/events.png';
 import reportLogo from '../img/reportimg.png';
 import configLogo from '../img/configuration.png';
+import { useTranslation } from 'react-i18next';
+
 
 const navOptions = [
+
+    
     {
         name: 'Home',
         path: '/',

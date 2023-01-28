@@ -35,10 +35,10 @@ function App() {
   const theme = localStorage.getItem('theme');
   console.log(theme);
   return (
+    // {`nav-container-${theme}`}
     <Router>
-
     <div className={`main-container-${theme}`}>
-        <div className="nav-container">
+        <div className={`nav-container-${theme}`}>
           <div className="nav-logo">
 		  	<Link to="/" key="home">
 				<img style={{marginLeft: "13px", marginTop: "20px", marginBottom: "18vh"}} width={40} src={Logo} alt="logo" />

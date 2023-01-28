@@ -1,0 +1,16 @@
+{
+    "ConfTitle": "Configuration",
+    "ConfColour": "Change your colour theme:",
+    "ConfLanguage": "Language:",
+    "ConfEnglish": "English",
+    "ConfSpanish": "Spanish",
+    "ConfButton": "Change",
+    "SendReport": "Send a report",
+    "UserReported": "User to report:",
+    "InsertUsername": "Insert the username of the user to report",
+    "Exists": "Username introduced does not exist",
+    "Reason": "Reason of the report:",
+    "SendRepButton": "Send the report",
+    "ErrorUsername": "To report a user you must introduce his/her username"
+
+}

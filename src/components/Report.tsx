@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 import * as userService from '../services/UserServices'
+import { useTranslation } from 'react-i18next';
 
 import { User } from '../models/User';
 
@@ -17,10 +18,15 @@ type ReportForm = {
 
 
 const ReportSend: React.FC = () => {
+    const { t, i18n } = useTranslation();
+    if (localStorage.getItem('language') === 'es') {
+       t('es');
+    } else {
+        t('en');
+    }
 
     const [user, setUser] = useState<User>();
     const [users, setUsers] = useState<User[]>();
-    const [userToReport, setToReport] = useState<User>();
     const [exists, setExists] = useState(false);
     const [show, setShow] = useState(false);
 	const loadUser = async () => {
@@ -97,21 +103,21 @@ useEffect(() => {
     return (
         <div className="create-event-container">
     		<form action="createEvent" className="create-event" style={clickCreateReport ? {marginLeft: "0vw", paddingBottom: "20px", width: "450px"} : {paddingBottom: "20px", width: "450px"}} onSubmit={sendEvent} >
-    		    <span className="create-event-header">Send a report</span>
-    		        <label style={{marginBottom: "5px"}}>User to report:<input type="text" placeholder="Insert the username of the user to be reported" {...register("user_reported")}/><p className="error-message">{errors.user_reported?.message}</p></label>
+    		    <span className="create-event-header">{t("SendReport")}</span>
+    		        <label style={{marginBottom: "5px"}}>{t("UserReported")}<input type="text" placeholder="Insert the username of the user to be reported" {...register("user_reported")}/><p className="error-message">{errors.user_reported?.message}</p></label>
                     {show ? 
-                    exists ? <label style={{marginBottom: "20px"}}>Exists</label> : <label style={{marginBottom: "20px"}}>Username introduced does not exist</label>
+                    exists ? <label style={{marginBottom: "20px"}}>Exists</label> : <label style={{marginBottom: "20px"}}>{t("Exists")}</label>
                      : <label style={{marginBottom: "20px"}}></label>}
-    		        <label style={{marginBottom: "20px"}}>Reason of the report:<input type="text" placeholder="Insert the reason of the report" {...register("reason")}/><p className="error-message">{errors.reason?.message}</p></label>
+    		        <label style={{marginBottom: "20px"}}>{t("Reason")}<input type="text" placeholder="Insert the reason of the report" {...register("reason")}/><p className="error-message">{errors.reason?.message}</p></label>
                 	
-					{/* <label style={{marginBottom: "20px"}} htmlFor="regUsername">Date:<input type="date" {...register("date")}/><p className="error-message">{errors.date?.message}</p></label> */}
+					{/* {t("Exists")} */}
                 	
     		    <div style={{width: "62%", display: "inline-flex", justifyContent: "center", marginBottom: "20px"}}>
     		    	<div style={{marginRight: "4%", display: "flex", flexDirection: "column", width: "62%"}}>
     		    	</div>
 				</div>
 
-    		    <button className="create-event-button" onClick={() => sendInfoReport()}><b>Send the report</b></button>
+    		    <button className="create-event-button" onClick={() => sendInfoReport()}><b>{t("SendRepButton")}</b></button>
 
             </form>
 		</div>
