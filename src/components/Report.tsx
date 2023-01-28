@@ -7,6 +7,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 import * as userService from '../services/UserServices'
 import { useTranslation } from 'react-i18next';
+import '../css/Config.css'
 
 import { User } from '../models/User';
 
@@ -24,7 +25,7 @@ const ReportSend: React.FC = () => {
     } else {
         t('en');
     }
-
+    const theme = localStorage.getItem('theme');
     const [user, setUser] = useState<User>();
     const [users, setUsers] = useState<User[]>();
     const [exists, setExists] = useState(false);
@@ -101,23 +102,21 @@ useEffect(() => {
     });
 
     return (
-        <div className="create-event-container">
-    		<form action="createEvent" className="create-event" style={clickCreateReport ? {marginLeft: "0vw", paddingBottom: "20px", width: "450px"} : {paddingBottom: "20px", width: "450px"}} onSubmit={sendEvent} >
+        <div className="config-container">
+    		<form action="createEvent" className={`config-${theme}`} style={clickCreateReport ? {marginLeft: "0vw", paddingBottom: "20px", width: "450px"} : {paddingBottom: "20px", width: "450px"}} onSubmit={sendEvent} >
     		    <span className="create-event-header">{t("SendReport")}</span>
-    		        <label style={{marginBottom: "5px"}}>{t("UserReported")}<input type="text" placeholder="Insert the username of the user to be reported" {...register("user_reported")}/><p className="error-message">{errors.user_reported?.message}</p></label>
+    		        <label style={{marginBottom: "5px"}}>{t("UserReported")}<input className={`input-${theme}`} type="text" placeholder={t("ErrorUsername")!} {...register("user_reported")}/><p className="error-message">{errors.user_reported?.message}</p></label>
                     {show ? 
                     exists ? <label style={{marginBottom: "20px"}}>Exists</label> : <label style={{marginBottom: "20px"}}>{t("Exists")}</label>
                      : <label style={{marginBottom: "20px"}}></label>}
-    		        <label style={{marginBottom: "20px"}}>{t("Reason")}<input type="text" placeholder="Insert the reason of the report" {...register("reason")}/><p className="error-message">{errors.reason?.message}</p></label>
-                	
-					{/* {t("Exists")} */}
+    		        <label style={{marginBottom: "20px"}}>{t("Reason")}<input className={`input-${theme}`} type="text" placeholder={t("PlaceholderReason")!} {...register("reason")}/><p className="error-message">{errors.reason?.message}</p></label>
                 	
     		    <div style={{width: "62%", display: "inline-flex", justifyContent: "center", marginBottom: "20px"}}>
     		    	<div style={{marginRight: "4%", display: "flex", flexDirection: "column", width: "62%"}}>
     		    	</div>
 				</div>
 
-    		    <button className="create-event-button" onClick={() => sendInfoReport()}><b>{t("SendRepButton")}</b></button>
+    		    <button className={`config-button-${theme}`} style={{marginLeft: "1%"}} onClick={() => sendInfoReport()}><b>{t("SendRepButton")}</b></button>
 
             </form>
 		</div>

@@ -11,6 +11,9 @@
     "Exists": "Username introduced does not exist",
     "Reason": "Reason of the report:",
     "SendRepButton": "Send the report",
-    "ErrorUsername": "To report a user you must introduce his/her username"
+    "ErrorUsername": "Introduce his/her username",
+    "PlaceholderReason": "Insert the reason of the report",
+    "navOptions.home": "Home"
+
 
 }

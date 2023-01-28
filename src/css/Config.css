@@ -41,8 +41,17 @@
 	align-items: center;
     transition: margin-right 1s, width 0s;
 }
-input{
+.input-dark{
 	background-color: #1E1E1E;
+	width: 100%;
+	height: 28px;
+	color: #9B9B9B;
+	padding: 0 6px;
+	border: none;
+	position: relative;
+}
+.input-light{
+	background-color: #e3d6d6;
 	width: 100%;
 	height: 28px;
 	color: #9B9B9B;

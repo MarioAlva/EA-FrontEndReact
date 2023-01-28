@@ -1,23 +1,21 @@
 import homeLogo from '../img/home.png';
 import Loginlogo from '../img/login.png';
 import EventArrow from '../img/EventArrow.png';
-import profileimg from '../img/profileimg.png';
+import profileimg from '../img/profilelogo.png';
 import searchLogo from '../img/search.png';
 import eventsLogo from '../img/events.png';
 import reportLogo from '../img/reportimg.png';
-import configLogo from '../img/configuration.png';
+import configLogo from '../img/configurationlogo.png';
 import { useTranslation } from 'react-i18next';
 
-
 const navOptions = [
-
-    
-    {
+    {     
         name: 'Home',
         path: '/',
         icon: homeLogo,
         exact: true,
-		auth: false
+	    auth: false
+
     },
     {
         name: 'Search',
