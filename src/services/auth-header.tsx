@@ -3,7 +3,7 @@ export default function authHeader() {
   
     if (user) {
       // return { Authorization: 'Bearer ' + user.accessToken };
-      return { "x-auth-token": user };
+      return { "x-access-token": user };
     } else {
       return {};
     }

@@ -1,13 +1,13 @@
 import axios from 'axios'
 import {Event} from '../models/Event'
 
-//const API = 'https://api1.tvtracker.tk/api/events/'
+//const API = 'http://api1.tvtracker.tk/api/events/'
 const API = 'http://localhost:5432/api/events/'
 
 export const RegisterEvent = async (event:Event) => {
     return await axios.post(`${API}`,event, {
         headers: {
-            "x-auth-token": localStorage.getItem('token')
+            "x-access-token": localStorage.getItem('token')
             
             }
       })
@@ -15,7 +15,11 @@ export const RegisterEvent = async (event:Event) => {
 export {}
 
 export const getAllEvents = async () => {
-    return await axios.get(`${API}`);
+    return await axios.get(`${API}`, {
+        headers: {
+            "x-access-token": localStorage.getItem('token')
+        }
+    });
 }
 
 export {}
