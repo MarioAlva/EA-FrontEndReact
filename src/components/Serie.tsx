@@ -155,7 +155,7 @@ const Serie: React.FC = () => {
 									</div>
 								))}	
 							</div>
-							: <div>No hay comentarios</div>
+							: <div>No hay comentarios.</div>
 							}
 						</div>          
             		</div>
