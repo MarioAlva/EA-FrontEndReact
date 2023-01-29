@@ -173,7 +173,7 @@ const Profile: React.FC = () => {
 							<div className="home-carrousel" style={{height: "120px"}}>
 								{events.map((event) => (
 									<div className='each-eventCarrousel'>
-										Hola
+										<img width="100%" src={event.image} alt="pictures" />
 									</div>
 								))}
 							</div>

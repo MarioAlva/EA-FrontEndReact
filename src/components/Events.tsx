@@ -46,12 +46,16 @@ const Events: React.FC = () => {
 				<div style={{width: "50%", overflowY: "scroll", overflowX: "hidden"}}>
 					{eventList.map((event) => (
 						<div onClick={() => gotoevent(event._id)} className="eventscreen-card">
-							<div style={{width: "100%"}}>
-								<div className="eventscreen-card-title">{event.title}</div>
-								<div className="eventscreen-card-description">{event.description}</div>
-								<img src={event.image}  height={100}></img>
-								<div className="eventscreen-card-date">
-									<Moment fromNow ago>{event.date?.toLocaleString("en-US")}</Moment>
+							<div style={{width: "100%", display: "inline-flex"}}>
+								<div style={{overflow: "hidden", width: "min(200px, 30%)", display: "flex", justifyContent: "center", alignItems: "center"}}>
+									<img src={event.image}  height="78%" alt="eventPic"></img>
+								</div>
+								<div style={{width: "100%", marginTop: "24px", marginLeft: "20px"}}>
+									<div className="eventscreen-card-title">{event.title}</div>
+									<div className="eventscreen-card-description">{event.description}</div>
+									<div className="eventscreen-card-date">
+										<Moment fromNow ago>{event.date?.toLocaleString("en-US")}</Moment>
+									</div>
 								</div>
 							</div>
 						</div>

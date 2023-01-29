@@ -32,7 +32,7 @@ function App() {
 
 
 	const token = localStorage.getItem('token');
-  const theme = localStorage.getItem('theme');
+  const theme = localStorage.getItem('theme') || 'dark';
   console.log(theme);
   return (
     // {`nav-container-${theme}`}

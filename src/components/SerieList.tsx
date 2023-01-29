@@ -24,10 +24,10 @@ import { useNavigate } from "react-router-dom"
       <div onClick={clickSerie} className="col-md-4 p-2" style={{width: "130px", height: "95%", margin: "0 5px", backgroundColor: "#3a3a3a", borderRadius: ".4vw"}}>
       <div
         className="card card-body video-card animate__animated animate__backInUp"
-        style={{ cursor: "pointer" }}
+        style={{ cursor: "pointer", overflow: "hidden" }}
         //onClick={() => history.push(`/update/${video._id}`)}
       >
-        <img src={'http://localhost:5432/serie/' + serie._id + '.jpg'} alt="" />
+        <img height="100%" src={serie.poster_path + ''} alt="poster" />
       </div>
     </div>
     )

@@ -6,7 +6,7 @@ import searchLogo from '../img/search.png';
 import eventsLogo from '../img/events.png';
 import reportLogo from '../img/reportimg.png';
 import jwt_decode from "jwt-decode";
-
+import configLogo from '../img/configurationlogo.png';	
 interface MyToken {
     id: string;
     email: string;
@@ -22,8 +22,7 @@ try{
 catch{
 	idUser = "";
 }
-import configLogo from '../img/configurationlogo.png';
-import { useTranslation } from 'react-i18next';
+
 
 const navOptions = [
     {     

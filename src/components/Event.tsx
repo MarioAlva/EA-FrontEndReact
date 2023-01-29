@@ -7,6 +7,7 @@ import { Event } from '../models/Event'
 import { MapContainer, TileLayer, Marker } from 'react-leaflet'
 import L from 'leaflet';
 import send from '../assets/img/send.svg'
+import { nextTick } from 'process'
 
 
 
@@ -28,12 +29,14 @@ const Eventpage: React.FC = () => {
 	const [lat, setLat] = useState<number>(0);
 	const [lng, setLng] = useState<number>(0);
 	const [comment, setCommenta] = useState<string>('');
-	useEffect(() => {
-		loadEvent(id)
-	}, [])
+	
 	const loadEvent = async (id : any) => {
-		const eve = await eventService.getEvent(id);
-		setEvent(eve.data);
+		await eventService.getEvent(id).then((res) => {
+			setEvent(res.data as Event);
+			setLat(res.data.lat);
+			setLng(res.data.lng);
+			console.log(event)
+		});
 		console.log(event)
 	  }
 	const addComment = async (id : string, owner: string, comment : string) => {
@@ -53,9 +56,13 @@ const Eventpage: React.FC = () => {
 			setEvent(res.data as Event);
 		});
 	}
+	useEffect(() => {
+		loadEvent(id);
+	}, [])
     return (
 		<div className="event-container">
 			<div className="event-header">
+				<img src={event?.image} alt="pictures" width="100%"/>
 			</div>
 			<div className="event-body">
 				<div className="event-bodyHeader">
@@ -79,12 +86,12 @@ const Eventpage: React.FC = () => {
 					)})}
 				</div>
 				<div className="event-map">
-					<MapContainer center={[lat, lng]} zoom={16} scrollWheelZoom={false} zoomControl={false} doubleClickZoom={false}>
+					<MapContainer center={[lat!, lng!]} zoom={16} scrollWheelZoom={false} zoomControl={false} doubleClickZoom={false}>
 						<TileLayer
 							attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 							url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
 						/>
-						<Marker icon={iconPerson} position={[event?.lat!, event?.lng!]}>
+						<Marker icon={iconPerson} position={[lat!, lng!]}>
 						</Marker>
 					</MapContainer>
 				</div>

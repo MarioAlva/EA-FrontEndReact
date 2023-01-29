@@ -21,62 +21,6 @@ const Search: React.FC = () => {
 	useEffect(() => {
 		loadSeries();
 	}, []);
-    // let info = [
-    //     {
-    //         name: "Event 1",
-    //         date: "2021-05-01",
-    //         time: "12:00",
-    //         location: "Location 1",
-    //         description: "Description 1",
-    //         tags: ["Action"],
-    //         image: "https://images.unsplash.com/photo-1617229632539-8b8b5b2b2f1d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
-    //     },
-    //     {
-    //         name: "Event 2",
-    //         date: "2021-05-02",
-    //         time: "13:00",
-    //         location: "Location 2",
-    //         description: "Description 2",
-    //         tags: ["Romance"],
-    //         image: "https://images.unsplash.com/photo-1617229632539-8b8b5b2b2f1d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
-    //     },
-    //     {
-    //         name: "Event 3",
-    //         date: "2021-05-03",
-    //         time: "14:00",
-    //         location: "Location 3",
-    //         description: "Description 3",
-    //         tags: ["Romance", "Comedy"],
-    //         image: "https://images.unsplash.com/photo-1617229632539-8b8b5b2b2f1d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
-    //     },
-    //     {
-    //         name: "Event 4",
-    //         date: "2021-05-04",
-    //         time: "15:00",
-    //         location: "Location 4",
-    //         description: "Description 4",
-    //         tags: ["Terror", "Drama", "Romance"],
-    //         image: "https://images.unsplash.com/photo-1617229632539-8b8b5b2b2f1d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
-    //     },
-    //     {
-    //         name: "Event 5",
-    //         date: "2021-05-05",
-    //         time: "16:00",
-    //         location: "Location 5",
-    //         description: "Description 5",
-    //         tags: ["Action", "Comedy"],
-    //         image: "https://images.unsplash.com/photo-1617229632539-8b8b5b2b2f1d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
-    //     },
-    //     {
-    //         name: "Event 6",
-    //         date: "2021-05-06",
-    //         time: "17:00",
-    //         location: "Location 6",
-    //         description: "Description 6",
-    //         tags: ["Drama", "Comedy", "Terror"],
-    //         image: "https://images.unsplash.com/photo-1617229632539-8b8b5b2b2f1d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
-    //     },
-    // ]
 
     let filteredInfo = info.filter((event) => {
         if (filterList.includes("All")) {
@@ -127,10 +71,7 @@ const Search: React.FC = () => {
                 {filteredInfo.map((item, index) => {
                     return (
                         <div onClick={() => clickSerie(index)} className='series-one' key={index}>
-                            <img src="" alt="series" />
-                            <div className='series-info'>
-                                <h3>{item.title}</h3>
-                            </div>
+                            <img height="100%" src={item.poster_path + ''} alt="series" />
                         </div>
                     )
                 })}
