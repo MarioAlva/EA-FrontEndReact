@@ -9,7 +9,11 @@ const RegisterSerie = async (serie:Serie) => {
 }
 
 const getAllSeries = async () => {
-    return await axios.get(`${API}`);
+    return await axios.get(`${API}`, {
+		headers: {
+            "x-access-token": localStorage.getItem('token')
+        }
+	});
 }
 
 const delSerie = async (id: string) => {
@@ -22,6 +26,9 @@ const updateSerie = async (serie:Serie) => {
 
 export const getSerie = async (id: string) => {
     return await axios.get(`${API}/${id}`);
+}
+export const addComment = async (idSerie: string, owner: string, comment: string, rate: number) => {
+	return await axios.post(`${API}addcomment/${idSerie}`, {content: comment, owner: owner, likes: rate});
 }
 
 export {RegisterSerie, getAllSeries, delSerie, updateSerie}

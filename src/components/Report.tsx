@@ -5,7 +5,8 @@ import { useNavigate } from "react-router-dom"
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
-import * as userService from '../services/UserServices'
+import * as userService from '../services/UserServices';
+import jwt_decode from "jwt-decode";
 
 import { User } from '../models/User';
 
@@ -15,6 +16,12 @@ type ReportForm = {
 	
 };
 
+interface MyToken {
+    id: string;
+    email: string;
+    iat: number;
+    exp: number;
+  }
 
 const ReportSend: React.FC = () => {
 
@@ -23,19 +30,18 @@ const ReportSend: React.FC = () => {
     const [userToReport, setToReport] = useState<User>();
     const [exists, setExists] = useState(false);
     const [show, setShow] = useState(false);
+	const token = localStorage.getItem('token')!;
+	let decoded = jwt_decode(token) as MyToken;
+	const idUser = decoded.id;
 	const loadUser = async () => {
 
-        const user = await userService.getProfile();
+        const user = await userService.getProfile(idUser);
         
         const getUser = user.data as User;
         setUser(getUser);     
-        console.log(getUser);
-        console.log("kajhgklajshfklashg");
-
         const allusers = await userService.getAllUser();
         const allUsers = allusers.data as User[];
         setUsers(allUsers);
-        console.log(allUsers);
     
 }
 useEffect(() => {

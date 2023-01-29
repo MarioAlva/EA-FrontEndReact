@@ -5,9 +5,8 @@ import { useEffect, useState } from 'react'
 import * as eventService from '../services/EventServices'
 import Moment from 'react-moment'
 import { useNavigate } from "react-router-dom";
-import { MapContainer, TileLayer, useMap, Marker, Popup } from 'react-leaflet'
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
-import { Wrapper, Status } from "@googlemaps/react-wrapper";
 import L from 'leaflet';
 
 const Events: React.FC = () => {
@@ -66,7 +65,7 @@ const Events: React.FC = () => {
     					url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
   					/>
 					{eventList.map((event) => (
-					<Marker icon={iconPerson} position={[event.lat, event.lng]}>
+					<Marker icon={iconPerson} position={[event.lat!, event.lng!]}>
     					<Popup>
      						A pretty CSS3 popup. <br /> Easily customizable.
     					</Popup>

@@ -21,25 +21,13 @@ import { useNavigate } from "react-router-dom"
 		navigate(`/serie/${serie._id}`);
 	  };
     return(
-      <div onClick={clickSerie} className="col-md-4 p-2">
+      <div onClick={clickSerie} className="col-md-4 p-2" style={{width: "130px", height: "95%", margin: "0 5px", backgroundColor: "#3a3a3a", borderRadius: ".4vw"}}>
       <div
         className="card card-body video-card animate__animated animate__backInUp"
         style={{ cursor: "pointer" }}
         //onClick={() => history.push(`/update/${video._id}`)}
       >
-        <div className="d-flex justify-content-between">
-          <h5>{serie.title}</h5>
-          <span
-            className="text-danger"
-            onClick={() => serie._id && handleDelete(serie._id)}
-          >
-            X
-          </span>
-        </div>
-        <p>{serie.overview}</p>
-        <div className="embed-responsive embed-responsive-16by9">
-          <h1>{serie.trailer_path}</h1>
-        </div>
+        <img src={'http://localhost:5432/serie/' + serie._id + '.jpg'} alt="" />
       </div>
     </div>
     )

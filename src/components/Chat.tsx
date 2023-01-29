@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { TypeOf } from 'yup';
 import '../css/Chat.css'
 import ScrollToBottom from 'react-scroll-to-bottom'
 

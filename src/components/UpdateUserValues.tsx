@@ -1,23 +1,13 @@
 import React from 'react'
-
 import { useNavigate } from "react-router-dom"
 import * as userService from '../services/UserServices'
 import { useEffect, useState } from 'react'
 import { User } from '../models/User'
-import Moment from 'react-moment'
 import '../css/UpdateUser.css'
 import '../css/Login.css'
-import { yupResolver } from '@hookform/resolvers/yup';
-import * as Yup from 'yup';
 import { useForm } from "react-hook-form";
-import { ImportsNotUsedAsValues } from 'typescript'
-type UserForm = {
-    name?: String;
-    username?: String;
-    email?: String;
-    birthdate?:Date;
-    password: String;
-};
+import jwt_decode from "jwt-decode";
+
 type FormValues = {
     name?: String;
     username?: String;
@@ -25,16 +15,23 @@ type FormValues = {
     birthdate?:Date;
     password: String;
 };
+interface MyToken {
+    id: string;
+    email: string;
+    iat: number;
+    exp: number;
+  }
 
 const UpdateUserValues: React.FC = () => {
-    let clickCreateEvent = true
     const [user, setUser] = useState<User>();
     let navigate = useNavigate();
     const handleClick = () => navigate('/updateUser');
     let [registerView, setRegister] = useState(false);
     const actualDate = new Date().getTime();
     const minDate = new Date().getTime() - new Date().setTime(1000 * 60 * 60 * 24 * 365 * 13);
-        
+    const token = localStorage.getItem('token')!;
+	let decoded = jwt_decode(token) as MyToken;
+	const idUser = decoded.id;
     const {
         register,
         handleSubmit,
@@ -68,7 +65,7 @@ const UpdateUserValues: React.FC = () => {
     });
 
     const loadUser = async () => {
-        let user = await userService.getProfile();
+        let user = await userService.getProfile(idUser);
         let getUser = user.data as User;
         setUser(getUser);
     }

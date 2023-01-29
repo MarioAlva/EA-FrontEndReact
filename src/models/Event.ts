@@ -9,8 +9,8 @@ export interface Event {
     owner?: User;
     date?: Date;
     location?: String;
-	lat: number;
-	lng: number;
+	lat?: number;
+	lng?: number;
     participants?: User[];
     comments: Comment[];
     vote_average?: Number;

@@ -8,7 +8,7 @@
     
 }
 .profile-header{
-	height: 25vh;
+	height: 136px;
 	max-height: 500px;
 	/* min-height: 5px; */
 	background-color: rgb(255, 238, 0);
@@ -21,13 +21,18 @@
 }
 
 .profile-image{
-    height: 100%;
-    width: 16%;
+    height: min(20vw, 150px);
+    width: min(20vw, 150px);
     border-radius: 50%;
+	border:rgb(255, 238, 0) 5px solid;
     background-color: rgb(255, 255, 255);
     margin: 0 auto;
     margin-top: 155px;
     margin-bottom: 20px;
+	display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
 }
 .profile1-image{
     height: 100%;
@@ -40,22 +45,23 @@
 }
 .profile-titles{
 	color: #ffffff;
-	font-family:fantasy;
-	font-size: 42px;
-    align-items: center;
-    margin: 12px auto;
+    font-family: sans-serif;
+    font-size: 42px;
+    margin: 32px auto;
 }
 .profile-config-button{
 	background-color: #151515;
-	color: #9F9F9F;
-	border-radius: 7px;
-	width: 120px;
-	max-width: 50vw;
-	border: none;
-	position: absolute;
-    top: 29%;
-    right: 0%;
-	cursor: pointer;
+    color: #9F9F9F;
+    border-radius: 7px;
+    width: min(120px, 10vw);
+    max-width: 50vw;
+    border: none;
+    position: absolute;
+    top: 150px;
+    right: 3%;
+    height: 30px;
+    cursor: pointer;
+	overflow: hidden;
 }
 .image-button{
 	background-color: #151515;
@@ -68,4 +74,45 @@
     top: 29%;
     right: 59%;
 	cursor: pointer;
+}
+.each-eventCarrousel{
+	width: 165px;
+    margin: 0 5px;
+    background-color: #3f3f3f;
+    border-radius: 1.4vw;
+	height: 95%
+}
+.profile-titles{
+	font-size: 26px;
+    font-weight: 600;
+    display: block;
+}
+.profile-comments-container{
+	margin-bottom: 100px;
+}
+.each-comment{
+	width: 57%;
+    height: auto;
+    padding: 10px;
+    background-color: #151515;
+    margin: 8px 6%;
+    border-radius: .6vw;
+    display: inline-flex;
+}
+.label-input{
+	background: #3f3f3f;
+    width: 40px;
+    height: 40px;
+    border-radius: 1vw;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+}
+.avatar-done{
+	width: 40px;
+    height: 40px;
+    border-radius: 1vw;
+    border: none;
+    background: green;
 }

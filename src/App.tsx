@@ -70,7 +70,7 @@ function App() {
             <Route path="/login" element={<Login />}></Route>
             <Route path="/event/create" element={<CreateEvent />}></Route>
             <Route path="/event" element={<Events />}></Route>
-            <Route path='/profile' element = {<Profile />}></Route>
+            <Route path='/profile/:id' element = {<Profile />}></Route>
             <Route path='/updateUser' element = {<UpdateUser />}></Route>
 			<Route path='/search' element = {<Search />}></Route>
 			<Route path='/serie/:id' element = {<Serie />}></Route>

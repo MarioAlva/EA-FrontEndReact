@@ -5,7 +5,23 @@ import profileimg from '../img/profileimg.png';
 import searchLogo from '../img/search.png';
 import eventsLogo from '../img/events.png';
 import reportLogo from '../img/reportimg.png';
+import jwt_decode from "jwt-decode";
 
+interface MyToken {
+    id: string;
+    email: string;
+    iat: number;
+    exp: number;
+  }
+let idUser;
+try{
+	const token = localStorage.getItem('token')!;
+	let decoded = jwt_decode(token) as MyToken;
+	idUser = decoded.id;
+}
+catch{
+	idUser = "";
+}
 
 const navOptions = [
     {
@@ -31,7 +47,7 @@ const navOptions = [
     },
     {
         name: 'Profile',
-        path: '/profile',
+        path: '/profile/' + idUser,
         icon: profileimg,
         exact: true,
         auth: true

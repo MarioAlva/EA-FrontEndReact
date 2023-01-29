@@ -65,3 +65,14 @@ label{
 .create-event-button:focus{
 	outline: 1px solid #9B9B9B;
 }
+.image-container{
+	height: 120px;
+    width: 180px;
+    margin-bottom: 21px;
+    background-color: #1e1e1e;
+    border-radius: 1vw;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	overflow: hidden;
+}
