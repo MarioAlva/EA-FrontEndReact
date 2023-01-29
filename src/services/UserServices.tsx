@@ -2,7 +2,7 @@ import axios from 'axios'
 import {User} from '../models/User'
 import jwt_decode from "jwt-decode";
 
-//const API = 'https://api1.tvtracker.tk/api/users/'
+//const API = 'http://api1.tvtracker.tk/api/users/'
 const API = 'http://localhost:5432/api/users/'
 
 interface MyToken {
@@ -18,6 +18,7 @@ export const RegisterUser = async (user:User) => {
 export {}
 
 export const LoginUser = async (user:User) => {
+    //return await axios.post(`http://api1.tvtracker.tk/api/auth/login`,user).then(res => {
     return await axios.post(`http://localhost:5432/api/auth/login`,user).then(res => {
             let token = res.data.token;
            	localStorage.setItem('user', res.data.session.id);

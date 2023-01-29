@@ -15,6 +15,7 @@ import Logout from './assets/img/logout.png';
 import login from './assets/img/login.png'; 
 import Chat from './components/Chat';
 import Report from './components/Report';
+import Config from './components/Configuration';
 import './App.css';
 import io from 'socket.io-client';
 
@@ -31,11 +32,13 @@ function App() {
 
 
 	const token = localStorage.getItem('token');
-
+  const theme = localStorage.getItem('theme');
+  console.log(theme);
   return (
+    // {`nav-container-${theme}`}
     <Router>
-    <div className="main-container">
-        <div className="nav-container">
+    <div className={`main-container-${theme}`}>
+        <div className={`nav-container-${theme}`}>
           <div className="nav-logo">
 		  	<Link to="/" key="home">
 				<img style={{marginLeft: "13px", marginTop: "20px", marginBottom: "18vh"}} width={40} src={Logo} alt="logo" />
@@ -78,6 +81,7 @@ function App() {
             <Route path='/updateUserValues' element = {<UpdateUserValues />}></Route>
             <Route path='/chat' element = {<Chat />}></Route>
             <Route path='report' element = {<Report />}></Route>
+            <Route path='/config' element = {<Config />}></Route>
 
           </Routes>
 		  </div>
