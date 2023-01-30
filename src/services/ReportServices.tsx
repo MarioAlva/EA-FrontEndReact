@@ -3,7 +3,7 @@ import {Report} from '../models/Report'
 
 
 const API = 'http://localhost:5432/api/report/'
-//const API = 'http://api1.tvtracker.tk/api/report/'
+//const API = 'https://api1.tvtracker.tk/api/report/'
 
 
 const sendReport = async (id: string, report:Report) => {

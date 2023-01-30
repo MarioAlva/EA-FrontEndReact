@@ -21,8 +21,8 @@
     color: #fff;
     z-index: 1;
     text-align: center;
-    margin-top: 240px;
     margin-left: 2%;
+    top: 197px;
 }
 
 #sinopsis_container{
@@ -84,7 +84,7 @@
 	cursor: pointer;
 }
 .add-fav-button{
-	background-color: #00ffbb;
+	background-color: #515151;
     color: #ffffff;
     border-radius: 7px;
     width: 120px;
@@ -96,7 +96,7 @@
 	z-index: 10;
 }
 .del-fav-button{
-	background-color: #c300ff;
+	background-color: #870a0a;
     color: #9F9F9F;
     border-radius: 7px;
     width: 120px;

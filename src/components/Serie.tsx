@@ -45,6 +45,7 @@ const Serie: React.FC = () => {
 	const joinRoom = () => {
         if (user?.username !== "" && serie?._id !== "") {
             console.log(user?.username);
+			console.log(serie?._id);
           socket.emit("join_room", serie?._id);
         }
     };
@@ -69,6 +70,8 @@ const Serie: React.FC = () => {
    
     const addSerieFav = async () => {
         await userService.addSerieFav(idUser as string, serie?._id as string);
+		console.log(idUser);
+		console.log(serie?._id);
 		setFollow(true);
     }
     const delSerie = async () => {
@@ -92,11 +95,12 @@ const Serie: React.FC = () => {
     
     return (
         <div className='serie-container'>
-                <div id='trailer_serie'>
+                <div id='trailer_serie' style={{overflow: "hidden"}} >
+					<img src={serie?.poster_path+""} alt="poster" width="100%"/>
 					<div className='favorite-button'>
 						<button className={follow ? 'del-fav-button' : 'add-fav-button'} onClick={follow ? delSerie: addSerieFav}>{follow ? 'Remove from favorite' : 'Add to favorite'}</button>
 					</div>
-					<h1 className='serie-title'>
+					<h1 className='serie-title' style={{zIndex:"100"}}>
                         {serie?.title}
                     </h1>
                 </div>
